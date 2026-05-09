@@ -40,12 +40,12 @@ const isEventsPage = currentPath === '/past-events';
         <img
           src="/images/logos/logo-color.png"
           alt="CGCS Logo"
-          class="h-20 md:h-24 w-auto md:scale-150 md:origin-left"
+          class="h-20 nav:h-24 w-auto nav:scale-150 nav:origin-left"
         />
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
+      <nav class="hidden nav:flex items-center space-x-8">
         {navItems.map((item) => (
           item.hasSubmenu ? (
             <div class="relative group">
@@ -132,7 +132,7 @@ const isEventsPage = currentPath === '/past-events';
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        class="nav:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
         aria-label="Toggle menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

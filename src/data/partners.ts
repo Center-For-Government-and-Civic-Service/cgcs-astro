@@ -56,7 +56,7 @@ export const partners: Partner[] = [
     x: 22, y: 38,
   },
   {
-    name: 'Austin Forum of Technology',
+    name: 'Austin Forum on Technology & Society',
     href: 'https://www.austinforum.org/',
     localLogo: '/images/partners/austin-forum.png',
     description: 'Austin Forum on Technology & Society hosts public conversations at the intersection of technology and civic life.',

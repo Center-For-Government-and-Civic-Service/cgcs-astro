@@ -6,12 +6,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Header -->
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <p class="text-accent-orange font-medium mb-4">Leadership – Education – Service</p>
-        <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-6">Want to use our Event Space?</h1>
-        <p class="text-lg text-text-light">
-          <strong class="text-text-dark">We're here to connect, collaborate, and support.</strong> The Center for Government and Civic Service (CGCS) welcomes inquiries from students, staff, faculty, partners, and community members. Please provide us with initial event details.
-        </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-accent-orange font-medium mb-4">Leadership – Education – Service</p>
+          <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-6">Want to use our Event Space?</h1>
+          <p class="text-lg text-text-light">
+            <strong class="text-text-dark">We're here to connect, collaborate, and support.</strong> The Center for Government and Civic Service (CGCS) welcomes inquiries from students, staff, faculty, partners, and community members. Please provide us with initial event details.
+          </p>
+        </div>
+        <div class="overflow-hidden rounded-2xl shadow-lg">
+          <img
+            src="/images/event-space-venue.jpg"
+            alt="CGCS Event Space Venue"
+            class="w-full h-80 md:h-96 object-cover"
+          />
+        </div>
       </div>
     </div>
   </section>

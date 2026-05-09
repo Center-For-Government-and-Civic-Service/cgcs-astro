@@ -60,8 +60,8 @@ const guidelines = [
           } else {
             try { domain = new URL(partner.href).hostname.replace(/^www\./, ''); } catch {}
           }
-          const clearbitUrl = `https://logo.clearbit.com/${domain}`;
-          const faviconUrl  = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+          const clearbitUrl = partner.localLogo ?? `https://logo.clearbit.com/${domain}`;
+          const faviconUrl  = partner.localLogo ?? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
           const initial     = partner.name.charAt(0).toUpperCase();
           return (
             <div
@@ -233,6 +233,7 @@ const guidelines = [
         slidesPerView: 1.25,
         centeredSlides: true,
         spaceBetween: 16,
+        loop: true,
         pagination: { el: '.swiper-pagination', clickable: true },
       });
 

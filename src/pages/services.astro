@@ -167,7 +167,7 @@ const processSteps = [
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl md:text-4xl font-bold text-text-dark text-center mb-12">How It Works</h2>
 
-      <div class="process-steps flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-4">
+      <div class="process-steps flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
         {processSteps.map((step, i) => (
           <>
             <div class="flex flex-col items-center text-center flex-1">
@@ -186,8 +186,8 @@ const processSteps = [
     </div>
   </section>
 
-  <!-- Testimonials -->
-  {testimonials.length > 0 && (
+  <!-- Testimonials (hidden until real testimonials are collected) -->
+  {false && testimonials.length > 0 && (
     <section class="py-20 bg-white" aria-label="Testimonials">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl md:text-4xl font-bold text-text-dark text-center mb-12">What People Are Saying</h2>

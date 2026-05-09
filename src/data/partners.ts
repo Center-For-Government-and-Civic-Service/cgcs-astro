@@ -3,6 +3,8 @@ export interface Partner {
   href: string;
   /** Override domain for logo fetching when href is a subpath of a shared platform (e.g. meetup.com) */
   logoDomain?: string;
+  /** Local logo image path (e.g. '/images/logo.png') — bypasses Clearbit */
+  localLogo?: string;
   description?: string;
   stats?: { label: string; value: string }[];
   /** Bubble diameter tier: sm=80px, md=130px, lg=180px */
@@ -10,6 +12,17 @@ export interface Partner {
   /** Desktop canvas position as % of container — refers to bubble center */
   x: number;
   y: number;
+}
+
+/** Shape dispatched on partner sphere/bubble click — consumed by panel logic */
+export interface PartnerClickData {
+  name: string;
+  href: string;
+  description: string;
+  stats: { label: string; value: string }[];
+  clearbit: string;
+  favicon: string;
+  initial: string;
 }
 
 export const partners: Partner[] = [
@@ -29,9 +42,9 @@ export const partners: Partner[] = [
   {
     name: 'Army Software Factory',
     href: 'https://soldiersolutions.swf.army.mil/',
-    logoDomain: 'army.mil',
+    localLogo: '/images/Army_Software_Factory_Logo.png',
     description: 'The Army Software Factory develops software talent and delivers digital solutions for the U.S. Army.',
-    size: 'md',
+    size: 'lg',
     x: 38, y: 10,
   },
   {
@@ -65,7 +78,7 @@ export const partners: Partner[] = [
   {
     name: 'City of Austin',
     href: 'https://www.austintexas.gov/opengovernmentpartnership',
-    logoDomain: 'austintexas.gov',
+    localLogo: '/images/austin-city-logo.svg',
     description: 'The City of Austin Open Government Partnership promotes transparency, civic participation, and accountability.',
     size: 'lg',
     x: 12, y: 65,

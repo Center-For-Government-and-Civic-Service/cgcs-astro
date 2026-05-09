@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PartnerSpheres from '../components/PartnerSpheres.astro';
+import PartnerBubble from '../components/PartnerBubble.astro';
 import PartnerPanel from '../components/PartnerPanel.astro';
 import { partners } from '../data/partners';
 
@@ -37,18 +37,20 @@ const guidelines = [
     </div>
   </section>
 
-  <!-- Desktop: Three.js Spheres -->
+  <!-- Desktop: Bubble Canvas -->
   <section
     id="bubble-canvas"
-    class="hidden md:block relative w-full bg-white overflow-hidden"
+    class="hidden md:block relative w-full bg-[#1e3a5f] overflow-hidden"
     style="min-height: 900px;"
     aria-label="Partner organizations"
   >
-    <PartnerSpheres />
+    {partners.map((partner) => (
+      <PartnerBubble partner={partner} />
+    ))}
   </section>
 
   <!-- Mobile: Swiper Carousel -->
-  <section class="md:hidden bg-white pt-12 pb-16" aria-label="Partner organizations">
+  <section class="md:hidden bg-[#1e3a5f] pt-12 pb-16" aria-label="Partner organizations">
     <div class="swiper partners-swiper">
       <div class="swiper-wrapper">
         {partners.map((partner) => {
@@ -58,12 +60,12 @@ const guidelines = [
           } else {
             try { domain = new URL(partner.href).hostname.replace(/^www\./, ''); } catch {}
           }
-          const clearbitUrl = partner.localLogo ?? `https://logo.clearbit.com/${domain}`;
-          const faviconUrl  = partner.localLogo ?? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+          const clearbitUrl = `https://logo.clearbit.com/${domain}`;
+          const faviconUrl  = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
           const initial     = partner.name.charAt(0).toUpperCase();
           return (
             <div
-              class="swiper-slide py-4 pl-6 pr-4"
+              class="swiper-slide flex justify-center items-center py-4"
               data-name={partner.name}
               data-href={partner.href}
               data-description={partner.description ?? ''}
@@ -71,27 +73,16 @@ const guidelines = [
               data-favicon={faviconUrl}
               data-initial={initial}
             >
-              <a
-                href={partner.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-4 no-underline"
-                aria-label={`${partner.name} — ${partner.description ?? ''}`}
+              <div
+                class="partner-bubble-mobile w-40 h-40 rounded-full bg-white flex flex-col items-center justify-center p-3 select-none"
+                aria-label={partner.name}
               >
-                <div class="flex flex-col items-center flex-shrink-0">
-                  <div class="partner-bubble-mobile w-28 h-28 rounded-full bg-white flex items-center justify-center p-2 select-none">
-                    <img class="w-12 h-12 object-contain bubble-logo-mobile" src={clearbitUrl} alt="" draggable="false" />
-                    <div class="bubble-initial-mobile hidden w-12 h-12 rounded-full bg-white items-center justify-center text-white font-bold text-xl" aria-hidden="true">
-                      <span>{initial}</span>
-                    </div>
-                  </div>
-                  <span class="text-[10px] font-semibold text-center text-gray-700 mt-1 leading-tight line-clamp-2 w-28" aria-hidden="true">{partner.name}</span>
+                <img class="w-16 h-16 object-contain bubble-logo-mobile" src={clearbitUrl} alt={partner.name} draggable="false" />
+                <div class="bubble-initial-mobile hidden w-16 h-16 rounded-full bg-[#1e3a5f] items-center justify-center text-white font-bold text-2xl" aria-hidden="true">
+                  <span>{initial}</span>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <span class="block text-sm font-bold text-gray-800 mb-1">{partner.name}</span>
-                  <p class="text-xs text-gray-500 leading-relaxed line-clamp-3 m-0">{partner.description}</p>
-                </div>
-              </a>
+                <span class="text-[10px] font-semibold text-center text-gray-700 px-1 mt-1 leading-tight line-clamp-2">{partner.name}</span>
+              </div>
             </div>
           );
         })}
@@ -99,6 +90,23 @@ const guidelines = [
       <div class="swiper-pagination !mt-0 !relative !bottom-0 pt-4"></div>
     </div>
 
+    <!-- Inline info panel — updates on swipe -->
+    <div id="mobile-partner-info" class="mt-8 px-8 text-center min-h-[140px]">
+      <h3 id="mobile-partner-name" class="text-white text-xl font-bold mb-2"></h3>
+      <p id="mobile-partner-desc" class="text-white/70 text-sm leading-relaxed mb-5 max-w-xs mx-auto"></p>
+      <a
+        id="mobile-partner-link"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#00A651] hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-colors duration-200"
+      >
+        Visit Website
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
   </section>
 
   <!-- Partner Guidelines -->
@@ -132,13 +140,16 @@ const guidelines = [
   <PartnerPanel />
 
   <script>
+    import gsap from 'gsap';
+    import ScrollTrigger from 'gsap/ScrollTrigger';
     import Swiper from 'swiper';
     import { Pagination } from 'swiper/modules';
     import 'swiper/css';
     import 'swiper/css/pagination';
-    import type { PartnerClickData } from '../data/partners';
 
-    // ── Logo fallback — mobile only ───────────────────────────────────────
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Logo fallback (Clearbit → favicon → initial letter) ──────────────
     function attachFallback(img: HTMLImageElement, faviconUrl: string, initialEl: HTMLElement) {
       let stage = 0;
       img.addEventListener('error', () => {
@@ -152,6 +163,12 @@ const guidelines = [
       });
     }
 
+    document.querySelectorAll<HTMLElement>('.partner-bubble').forEach((el) => {
+      const img       = el.querySelector<HTMLImageElement>('.bubble-logo')!;
+      const initialEl = el.querySelector<HTMLElement>('.bubble-initial')!;
+      if (img && initialEl) attachFallback(img, el.dataset.favicon!, initialEl);
+    });
+
     document.querySelectorAll<HTMLElement>('.partner-bubble-mobile').forEach((el) => {
       const slide     = el.closest<HTMLElement>('[data-name]')!;
       const img       = el.querySelector<HTMLImageElement>('.bubble-logo-mobile')!;
@@ -159,26 +176,86 @@ const guidelines = [
       if (img && initialEl && slide) attachFallback(img, slide.dataset.favicon!, initialEl);
     });
 
-    // ── Desktop fallback bubbles (WebGL fail path) ────────────────────────
-    document.querySelectorAll<HTMLElement>('.partner-bubble').forEach((el) => {
-      const img       = el.querySelector<HTMLImageElement>('.bubble-logo')!;
-      const initialEl = el.querySelector<HTMLElement>('.bubble-initial')!;
-      if (img && initialEl) attachFallback(img, el.dataset.favicon!, initialEl);
-    });
+    // ── GSAP — desktop: continuous float + bidirectional scroll fade ──────
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const bubbles = Array.from(document.querySelectorAll<HTMLElement>('.partner-bubble'));
 
-    // ── Swiper — mobile carousel ──────────────────────────────────────────
+      // All start invisible
+      gsap.set(bubbles, { opacity: 0 });
+
+      // Each bubble gets its own gentle float loop (independent of scroll)
+      bubbles.forEach((el) => {
+        const floatX = (Math.random() - 0.5) * 22;
+        const floatY = (Math.random() - 0.5) * 16;
+        gsap.to(el, {
+          x: floatX,
+          y: floatY,
+          duration: 2.5 + Math.random() * 2.5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: Math.random() * 2.5,
+        });
+      });
+
+      // Scroll: fade all bubbles in when canvas enters view, fade out on scroll back up
+      ScrollTrigger.create({
+        trigger: '#bubble-canvas',
+        start: 'top 85%',
+        onEnter: () => {
+          gsap.to(bubbles, {
+            opacity: 1,
+            duration: 0.55,
+            stagger: 0.05,
+            ease: 'power2.out',
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(bubbles, {
+            opacity: 0,
+            duration: 0.35,
+            stagger: 0.02,
+          });
+        },
+      });
+    }
+
+    // ── Swiper — mobile: wheel-style carousel with inline info ────────────
     const swiperEl = document.querySelector<HTMLElement>('.partners-swiper');
     if (swiperEl) {
-      new Swiper(swiperEl, {
+      const infoEl = document.getElementById('mobile-partner-info')!;
+      const nameEl = document.getElementById('mobile-partner-name')!;
+      const descEl = document.getElementById('mobile-partner-desc')!;
+      const linkEl = document.getElementById('mobile-partner-link') as HTMLAnchorElement;
+
+      const swiper = new Swiper(swiperEl, {
         modules: [Pagination],
-        slidesPerView: 1,
+        slidesPerView: 1.25,
         centeredSlides: true,
         spaceBetween: 16,
         pagination: { el: '.swiper-pagination', clickable: true },
       });
+
+      function updateInfo() {
+        const slide = swiper.slides[swiper.activeIndex] as HTMLElement;
+        if (!slide) return;
+        // Quick fade
+        infoEl.style.opacity = '0';
+        setTimeout(() => {
+          nameEl.textContent = slide.dataset.name ?? '';
+          const desc = slide.dataset.description ?? '';
+          descEl.textContent = desc;
+          descEl.style.display = desc ? 'block' : 'none';
+          linkEl.href = slide.dataset.href ?? '#';
+          infoEl.style.opacity = '1';
+        }, 160);
+      }
+
+      updateInfo();
+      swiper.on('slideChange', updateInfo);
     }
 
-    // ── Panel open / close ────────────────────────────────────────────────
+    // ── Panel open / close — desktop only ────────────────────────────────
     const dialog      = document.getElementById('partner-panel')     as HTMLDialogElement;
     const panelLogo   = document.getElementById('panel-logo')        as HTMLImageElement;
     const panelInit   = document.getElementById('panel-initial')     as HTMLElement;
@@ -188,7 +265,13 @@ const guidelines = [
     const panelLink   = document.getElementById('panel-link')        as HTMLAnchorElement;
     const closeBtn    = document.getElementById('panel-close')       as HTMLButtonElement;
 
-    function openPanel(d: PartnerClickData) {
+    interface BubbleData {
+      name: string; href: string; description: string;
+      stats: { label: string; value: string }[];
+      clearbit: string; favicon: string; initial: string;
+    }
+
+    function openPanel(d: BubbleData) {
       panelLogo.style.display = 'block';
       panelInit.style.display = 'none';
       panelInit.textContent   = d.initial;
@@ -226,16 +309,7 @@ const guidelines = [
     closeBtn.addEventListener('click', closePanel);
     dialog.addEventListener('click', (e) => { if (e.target === dialog) closePanel(); });
 
-    // ── Three.js sphere click → open panel (CustomEvent from PartnerSpheres) ──
-    const canvas = document.getElementById('partner-canvas');
-    if (canvas) {
-      canvas.addEventListener('partner-click', ((e: CustomEvent<PartnerClickData>) => {
-        openPanel(e.detail);
-      }) as EventListener);
-    }
-
-    // ── WebGL fallback bubbles → open panel ───────────────────────────────
-    function bubbleDataFrom(el: HTMLElement): PartnerClickData {
+    function bubbleDataFrom(el: HTMLElement): BubbleData {
       return {
         name:        el.dataset.name!,
         href:        el.dataset.href!,
@@ -247,6 +321,7 @@ const guidelines = [
       };
     }
 
+    // Desktop bubbles → open panel
     document.querySelectorAll<HTMLElement>('.partner-bubble').forEach((el) => {
       el.addEventListener('click', () => openPanel(bubbleDataFrom(el)));
       el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') el.click(); });
@@ -266,7 +341,7 @@ const guidelines = [
   .partners-swiper .swiper-slide-active .partner-bubble-mobile {
     transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
   }
 
   /* Mobile info panel fade transition */

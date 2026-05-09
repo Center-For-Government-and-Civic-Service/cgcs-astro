@@ -18,15 +18,14 @@ if (partner.logoDomain) {
   }
 }
 
-const logoUrl     = partner.localLogo ?? `https://logo.clearbit.com/${domain}`;
-const clearbitUrl = partner.localLogo ?? `https://logo.clearbit.com/${domain}`;
-const faviconUrl  = partner.localLogo ?? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+const clearbitUrl = `https://logo.clearbit.com/${domain}`;
+const faviconUrl  = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
 const initial     = partner.name.charAt(0).toUpperCase();
 
 const sizeMap = {
   sm: { outer: 'w-20 h-20',  img: 'w-10 h-10', text: 'text-[10px]' },
   md: { outer: 'w-32 h-32',  img: 'w-16 h-16', text: 'text-xs'     },
-  lg: { outer: 'w-48 h-48',  img: 'w-24 h-24', text: 'text-xs'     },
+  lg: { outer: 'w-44 h-44',  img: 'w-24 h-24', text: 'text-sm'     },
 };
 const sz = sizeMap[partner.size];
 ---

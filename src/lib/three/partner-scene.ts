@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createGlassSphere, disposeGeometryCache, type SphereUserData } from './glass-sphere';
+import { createGlassSphere, createTextSprite, disposeGeometryCache, type SphereUserData } from './glass-sphere';
 import type { Partner, PartnerClickData } from '../../data/partners';
 
 // ── Types ───────────────────────────────────────────────────────────────
@@ -13,10 +13,11 @@ interface PartnerSceneData {
 
 // ── Constants ───────────────────────────────────────────────────────────
 
-const WORLD_EXTENT = 10;
+const WORLD_HEIGHT = 10; // Fixed vertical extent — horizontal grows with aspect
 const FOV = 50;
 const TABLET_BREAKPOINT = 1024;
 const TABLET_SCALE = 0.8;
+const RADIUS_MAP: Record<string, number> = { sm: 0.58, md: 0.94, lg: 1.30 };
 
 // ── Helpers ─────────────────────────────────────────────────────────────
 
@@ -25,15 +26,15 @@ function percentToWorld(
   yPct: number,
   aspect: number,
 ): [number, number] {
-  const halfW = WORLD_EXTENT / 2;
-  const halfH = halfW / aspect;
-  const wx = (xPct / 100) * WORLD_EXTENT - halfW;
-  const wy = -((yPct / 100) * (WORLD_EXTENT / aspect)) + halfH;
+  const halfH = WORLD_HEIGHT / 2;
+  const halfW = halfH * aspect;
+  const wx = (xPct / 100) * (WORLD_HEIGHT * aspect) - halfW;
+  const wy = -((yPct / 100) * WORLD_HEIGHT) + halfH;
   return [wx, wy];
 }
 
-function cameraZForExtent(fovDeg: number, aspect: number): number {
-  const halfH = (WORLD_EXTENT / aspect) / 2;
+function cameraZForExtent(fovDeg: number): number {
+  const halfH = WORLD_HEIGHT / 2;
   return halfH / Math.tan((fovDeg / 2) * (Math.PI / 180)) + 1;
 }
 
@@ -61,7 +62,7 @@ export function init(
   const scene = new THREE.Scene();
   const aspect = parent.clientWidth / parent.clientHeight;
   const camera = new THREE.PerspectiveCamera(FOV, aspect, 0.1, 100);
-  camera.position.z = cameraZForExtent(FOV, aspect);
+  camera.position.z = cameraZForExtent(FOV);
 
   // Create spheres
   const spheres: THREE.Mesh[] = [];
@@ -83,8 +84,31 @@ export function init(
       mesh.scale.setScalar(0); // start hidden for entrance animation
     }
 
+    // Per-sphere logo UV offset
+    if (pd.partner.name === 'Skull Games') {
+      (mesh.material as THREE.ShaderMaterial).uniforms.uLogoOffset.value.set(-0.1, 0);
+    }
+    if (pd.partner.name === 'City of Austin') {
+      (mesh.material as THREE.ShaderMaterial).uniforms.uLogoOffset.value.set(-0.15, 0);
+    }
+
     scene.add(mesh);
     spheres.push(mesh);
+  });
+
+  // Create text label sprites below each sphere
+  const labels: THREE.Sprite[] = [];
+  partners.forEach((pd, i) => {
+    const sprite = createTextSprite(pd.partner.name, pd.partner.size);
+    const mesh = spheres[i];
+    const labelYOffset = sprite.userData.yOffset as number;
+    sprite.position.set(mesh.position.x, mesh.position.y + labelYOffset, mesh.position.z);
+    sprite.userData.baseScale = sprite.scale.clone();
+    if (!reducedMotion) {
+      sprite.scale.setScalar(0);
+    }
+    scene.add(sprite);
+    labels.push(sprite);
   });
 
   // Raycasting
@@ -98,6 +122,8 @@ export function init(
   let entranceStartTime = -1;
   const entranceProgress: number[] = spheres.map(() => reducedMotion ? 1 : 0);
   let pressedSphere: THREE.Mesh | null = null;
+  let hoveredIndex = -1;
+  const labelHoverScale: number[] = spheres.map(() => 1);
 
   // ── Resize ──────────────────────────────────────────────────────────
 
@@ -108,7 +134,7 @@ export function init(
 
     renderer.setSize(w, h);
     camera.aspect = w / h;
-    camera.position.z = cameraZForExtent(FOV, camera.aspect);
+    camera.position.z = cameraZForExtent(FOV);
     camera.updateProjectionMatrix();
 
     // Tablet scaling: ~20% smaller spheres below 1024px
@@ -126,6 +152,11 @@ export function init(
       if (entranceProgress[i] >= 1) {
         mesh.scale.setScalar(scaleFactor);
       }
+
+      // Reposition label above sphere
+      const label = labels[i];
+      const labelYOffset = label.userData.yOffset as number;
+      label.position.set(wx, wy + labelYOffset, mesh.position.z);
     });
   }
 
@@ -150,6 +181,7 @@ export function init(
           entranceStartTime = -1;
           for (let i = 0; i < entranceProgress.length; i++) entranceProgress[i] = 0;
           spheres.forEach((m) => m.scale.setScalar(0));
+          labels.forEach((l) => l.scale.setScalar(0));
         }
       }
     },
@@ -167,6 +199,7 @@ export function init(
     raycaster.setFromCamera(pointer, camera);
     const hits = raycaster.intersectObjects(spheres);
     canvas.style.cursor = hits.length > 0 ? 'pointer' : 'default';
+    hoveredIndex = hits.length > 0 ? spheres.indexOf(hits[0].object as THREE.Mesh) : -1;
   }
 
   function onPointerDown(e: PointerEvent) {
@@ -227,6 +260,8 @@ export function init(
     spheres.forEach((mesh, i) => {
       const ud = mesh.userData as SphereUserData;
 
+      const label = labels[i];
+
       // Entrance animation — stagger from entranceStartTime
       if (entranceTriggered && entranceProgress[i] < 1) {
         const staggerDelay = i * 0.06;
@@ -235,12 +270,29 @@ export function init(
           entranceProgress[i] = Math.min(entranceProgress[i] + 0.04, 1);
         }
         mesh.scale.setScalar(entranceProgress[i] * scaleFactor);
+        const bs = label.userData.baseScale as THREE.Vector3;
+        label.scale.set(
+          bs.x * entranceProgress[i],
+          bs.y * entranceProgress[i],
+          bs.z * entranceProgress[i],
+        );
       }
 
-      // Bob + rotation (skip if reduced motion)
+      // Bob animation (skip if reduced motion) — no rotation so logos always face camera
       if (!reducedMotion && entranceProgress[i] >= 1) {
-        mesh.position.y = ud.baseY + Math.sin(elapsed * ud.bobSpeed + ud.bobPhase) * ud.bobAmplitude;
-        mesh.rotation.y += ud.rotSpeed * 0.016; // ~60fps delta
+        const bobY = Math.sin(elapsed * ud.bobSpeed + ud.bobPhase) * ud.bobAmplitude;
+        mesh.position.y = ud.baseY + bobY;
+        const labelYOffset = label.userData.yOffset as number;
+        label.position.y = ud.baseY + bobY + labelYOffset;
+      }
+
+      // Label hover scale — smooth lerp toward target
+      if (entranceProgress[i] >= 1) {
+        const target = i === hoveredIndex ? 1.6 : 1;
+        labelHoverScale[i] += (target - labelHoverScale[i]) * 0.12;
+        const bs = label.userData.baseScale as THREE.Vector3;
+        const s = labelHoverScale[i];
+        label.scale.set(bs.x * s, bs.y * s, bs.z * s);
       }
     });
 
@@ -263,6 +315,11 @@ export function init(
       const mat = mesh.material as THREE.ShaderMaterial;
       const tex = mat.uniforms.uLogoTexture.value as THREE.Texture | null;
       tex?.dispose();
+      mat.dispose();
+    });
+    labels.forEach((sprite) => {
+      const mat = sprite.material as THREE.SpriteMaterial;
+      mat.map?.dispose();
       mat.dispose();
     });
     disposeGeometryCache();

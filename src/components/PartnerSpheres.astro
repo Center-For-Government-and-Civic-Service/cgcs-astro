@@ -34,7 +34,7 @@ const partnerData = partners.map((partner) => {
   <!-- A11y: hidden buttons positioned over each sphere -->
   {partnerData.map((pd) => (
     <button
-      class="sphere-a11y-btn absolute opacity-0 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] rounded-full"
+      class="sphere-a11y-btn absolute opacity-0 focus:ring-2 focus:ring-white focus:ring-offset-2 rounded-full"
       style={`left: ${pd.partner.x}%; top: ${pd.partner.y}%; transform: translate(-50%, -50%); width: 3rem; height: 3rem;`}
       aria-label={`View ${pd.partner.name} partner details`}
       data-name={pd.partner.name}
@@ -107,3 +107,4 @@ const partnerData = partners.map((partner) => {
     fallback.classList.remove('hidden');
   }
 </script>
+

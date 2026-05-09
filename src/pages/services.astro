@@ -220,6 +220,10 @@ const processSteps = [
 
       <div class="bg-accent-teal/10 rounded-3xl p-8 md:p-12">
         <form class="space-y-6" id="services-inquiry-form">
+          <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY} />
+          <input type="hidden" name="subject" value="New Services Inquiry — CGCS Website" />
+          <input type="hidden" name="from_name" value="CGCS Services Form" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label for="firstName" class="block text-sm font-medium text-text-dark mb-1">First Name *</label>
@@ -347,14 +351,42 @@ const processSteps = [
       }
     }
 
-    // Form submission (demo)
-    const form = document.getElementById('services-inquiry-form');
+    // Form submission via Web3Forms
+    const form = document.getElementById('services-inquiry-form') as HTMLFormElement;
     const successMsg = document.getElementById('form-success');
+    const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      form.classList.add('hidden');
-      successMsg?.classList.remove('hidden');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.classList.add('hidden');
+          successMsg?.classList.remove('hidden');
+        } else {
+          alert('Something went wrong. Please try again or email admin@cgcsacc.org directly.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Inquiry';
+          }
+        }
+      } catch {
+        alert('Something went wrong. Please try again or email admin@cgcsacc.org directly.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Inquiry';
+        }
+      }
     });
   </script>
 </BaseLayout>

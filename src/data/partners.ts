@@ -29,20 +29,21 @@ export const partners: Partner[] = [
   {
     name: 'ACM at ACC',
     href: 'https://www.austincs.org/',
+    localLogo: '/images/partners/acm-at-acc.png',
     size: 'sm',
     x: 12, y: 12,
   },
   {
     name: 'ACM Austin Chapter',
     href: 'https://www.meetup.com/acm-austin/',
-    logoDomain: 'acm.org',
+    localLogo: '/images/partners/acm-austin.png',
     size: 'sm',
     x: 92, y: 35,
   },
   {
     name: 'Army Software Factory',
     href: 'https://soldiersolutions.swf.army.mil/',
-    localLogo: '/images/Army_Software_Factory_Logo.png',
+    localLogo: '/images/partners/army-software-factory.png',
     description: 'The Army Software Factory develops software talent and delivers digital solutions for the U.S. Army.',
     size: 'lg',
     x: 38, y: 10,
@@ -50,20 +51,22 @@ export const partners: Partner[] = [
   {
     name: 'ATX Design Jams',
     href: 'https://www.meetup.com/meetup-group-atxdesignjam/',
-    logoDomain: 'eventbrite.com',
+    localLogo: '/images/partners/atx-design-jams.png',
     size: 'sm',
     x: 38, y: 58,
   },
   {
     name: 'Austin AI Alliance',
     href: 'https://austin-ai.org/',
+    localLogo: '/images/partners/austin-ai-alliance.png',
     description: 'The Austin AI Alliance connects the local AI community through events, networking, and education.',
     size: 'lg',
     x: 22, y: 38,
   },
   {
-    name: 'Austin Forum of Technology',
+    name: 'The Austin Forum on Technology & Society',
     href: 'https://www.austinforum.org/',
+    localLogo: '/images/partners/austin-forum.png',
     description: 'Austin Forum on Technology & Society hosts public conversations at the intersection of technology and civic life.',
     size: 'md',
     x: 62, y: 15,
@@ -71,6 +74,7 @@ export const partners: Partner[] = [
   {
     name: 'Braver Angels',
     href: 'https://braverangels.org/',
+    localLogo: '/images/partners/braver-angels.png',
     description: 'Braver Angels works to depolarize America by bringing liberals and conservatives together.',
     size: 'md',
     x: 85, y: 12,
@@ -78,7 +82,7 @@ export const partners: Partner[] = [
   {
     name: 'City of Austin',
     href: 'https://www.austintexas.gov/opengovernmentpartnership',
-    localLogo: '/images/austin-city-logo.svg',
+    localLogo: '/images/partners/city-of-austin.png',
     description: 'The City of Austin Open Government Partnership promotes transparency, civic participation, and accountability.',
     size: 'lg',
     x: 12, y: 65,
@@ -86,6 +90,7 @@ export const partners: Partner[] = [
   {
     name: 'Cyversity',
     href: 'https://www.cyversity.org/',
+    localLogo: '/images/partners/cyversity.png',
     description: 'Cyversity increases diversity and inclusion in the cybersecurity industry through education and mentorship.',
     size: 'sm',
     x: 50, y: 32,
@@ -93,6 +98,7 @@ export const partners: Partner[] = [
   {
     name: 'LangChain',
     href: 'https://www.langchain.com/',
+    localLogo: '/images/partners/langchain.png',
     description: 'LangChain builds tools and infrastructure for developing applications powered by large language models.',
     size: 'lg',
     x: 72, y: 42,
@@ -100,6 +106,7 @@ export const partners: Partner[] = [
   {
     name: 'Open Austin',
     href: 'http://open-austin.org/',
+    localLogo: '/images/partners/open-austin.png',
     description: 'Open Austin is a civic technology and open government organization advocating for a more open and connected Austin.',
     size: 'sm',
     x: 80, y: 60,
@@ -107,6 +114,7 @@ export const partners: Partner[] = [
   {
     name: 'Public Service Desk',
     href: 'https://thepublicservicedesk.org/',
+    localLogo: '/images/partners/public-service-desk.png',
     description: 'The Public Service Desk connects citizens with resources and services to strengthen community resilience.',
     size: 'md',
     x: 25, y: 85,
@@ -114,6 +122,7 @@ export const partners: Partner[] = [
   {
     name: 'SerpApi',
     href: 'https://serpapi.com/',
+    localLogo: '/images/partners/serpapi.png',
     description: 'SerpApi provides a real-time API to access search engine results, supporting research and civic technology projects.',
     size: 'md',
     x: 55, y: 70,
@@ -121,7 +130,7 @@ export const partners: Partner[] = [
   {
     name: 'Service Learning ACC',
     href: 'https://servicelearning.austincc.edu/',
-    logoDomain: 'austincc.edu',
+    localLogo: '/images/partners/service-learning-acc.png',
     description: 'Service Learning at ACC integrates community service with instruction to enrich learning and civic responsibility.',
     size: 'sm',
     x: 68, y: 85,
@@ -129,6 +138,7 @@ export const partners: Partner[] = [
   {
     name: 'Skull Games',
     href: 'https://skullgames.org/',
+    localLogo: '/images/partners/skull-games.png',
     description: 'Skull Games Society uses game design and play to build community and develop civic leadership skills.',
     size: 'sm',
     x: 88, y: 80,
@@ -136,6 +146,7 @@ export const partners: Partner[] = [
   {
     name: 'United Way',
     href: 'https://unitedwayaustin.org/',
+    localLogo: '/images/partners/united-way.png',
     description: 'United Way for Greater Austin fights for the health, education, and financial stability of every person in our community.',
     size: 'md',
     x: 45, y: 85,

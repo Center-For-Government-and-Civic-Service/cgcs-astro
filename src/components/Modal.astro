@@ -4,6 +4,7 @@ interface AccordionItem {
   description: string;
   details?: string[];
   meta?: { label: string; value: string }[];
+  cta?: { label: string; url: string };
 }
 
 interface Props {
@@ -83,6 +84,14 @@ const { id, title, image, description, highlights, lookingAhead, accordionItems,
                       <li>{detail}</li>
                     ))}
                   </ul>
+                )}
+                {item.cta && (
+                  <a href={item.cta.url} target="_blank" rel="noopener noreferrer" class="accordion-cta">
+                    {item.cta.label}
+                    <svg class="cta-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 )}
               </div>
             </details>
@@ -409,6 +418,31 @@ const { id, title, image, description, highlights, lookingAhead, accordionItems,
     position: absolute;
     left: 0;
     color: #00A651;
+  }
+
+  .accordion-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #00A651;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.2s, gap 0.2s;
+  }
+
+  .accordion-cta:hover {
+    background: #008c44;
+    gap: 0.75rem;
+  }
+
+  .cta-arrow {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   @media (max-width: 640px) {

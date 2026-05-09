@@ -18,8 +18,8 @@ if (partner.logoDomain) {
   }
 }
 
-const clearbitUrl = `https://logo.clearbit.com/${domain}`;
-const faviconUrl  = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+const clearbitUrl = partner.localLogo ?? `https://logo.clearbit.com/${domain}`;
+const faviconUrl  = partner.localLogo ?? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
 const initial     = partner.name.charAt(0).toUpperCase();
 
 const sizeMap = {

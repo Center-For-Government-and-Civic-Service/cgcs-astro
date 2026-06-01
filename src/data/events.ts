@@ -286,6 +286,15 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-06-04',
   },
+  {
+    title: 'Summer AI Intensive 2026',
+    date: 'June 22-24, 2026',
+    time: '9:00 am - 3:00 pm',
+    image: 'https://austin-ai.org/wp-content/uploads/2026/03/Summer-AI-Intensive-2026-Promo-banner.png',
+    href: 'https://austin-ai.org/event/summer-ai-intensive-2026/',
+    newTab: true,
+    isoDate: '2026-06-24',
+  },
 ];
 
 const now = new Date();

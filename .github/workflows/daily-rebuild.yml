@@ -1,6 +1,8 @@
 name: Daily Rebuild
 
 on:
+  push:
+    branches: [main]      # deploy on every push to main (e.g. content edits)
   schedule:
     - cron: '1 6 * * *'  # 12:01am CST (UTC-6) / 1:01am CDT (UTC-5)
   workflow_dispatch:      # allows manual trigger from GitHub Actions UI

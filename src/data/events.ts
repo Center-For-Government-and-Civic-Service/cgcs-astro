@@ -295,6 +295,41 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-06-24',
   },
+  {
+    title: 'ACM Monthly Meetup',
+    date: 'July 29, 2026',
+    time: '5:00 pm - 9:00 pm',
+    image: 'https://secure.meetupstatic.com/photos/event/4/2/0/d/highres_530236909.jpeg',
+    href: 'https://www.meetup.com/acm-austin/',
+    newTab: true,
+    isoDate: '2026-07-29',
+  },
+  {
+    title: 'Austin Forum for Technology & Society',
+    date: 'August 4, 2026',
+    time: '5:00 pm - 9:00 pm',
+    image: 'https://images.squarespace-cdn.com/content/v1/6655f10a960c803d55554e19/b40b978c-9822-46fb-a1ad-ee407739aab7/AIDebate.JPEG',
+    href: 'https://www.austinforum.org/',
+    newTab: true,
+    isoDate: '2026-08-04',
+  },
+  {
+    title: 'Austin LangChain AI Meetup',
+    date: 'August 5, 2026',
+    time: '5:00 pm - 9:00 pm',
+    image: 'https://secure.meetupstatic.com/photos/event/6/5/5/highres_531601621.jpeg',
+    href: 'https://www.meetup.com/austin-langchain-ai-group/',
+    newTab: true,
+    isoDate: '2026-08-05',
+  },
+  {
+    title: 'Student Success Ascender Event',
+    date: 'August 21, 2026',
+    image: '/images/ascender-catch-the-next.jpg',
+    href: 'https://www.austincc.edu/ascender',
+    newTab: true,
+    isoDate: '2026-08-21',
+  },
 ];
 
 const now = new Date();

@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="GAPS Internship"
-  description="Generative AI for Public Service (GAPS) — Build Real AI. Serve Real People. Fall 2026 internship at Austin Community College."
+  title="GAPS: Generative AI for Public Service"
+  description="Generative AI for Public Service (GAPS) is a one semester Austin Community College program where student teams design, build, and deploy an AI tool for a public institution."
 >
   <!-- Breadcrumbs -->
   <nav class="bg-gray-50 border-b border-gray-200">
@@ -23,7 +23,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="relative bg-[#1e3a5f] text-white overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] via-[#1e3a5f] to-primary/30"></div>
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-      <p class="text-primary font-semibold tracking-wide uppercase mb-4">Fall 2026 Internship</p>
+      <p class="text-primary font-semibold tracking-wide uppercase mb-4">First Cohort: Fall 2026</p>
       <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
         Build Real AI.<br />Serve Real People.
       </h1>
@@ -31,25 +31,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Generative AI for Public Service (GAPS)
       </p>
       <p class="text-lg text-gray-400 mb-10">
-        Any major. Any background. No experience needed.
+        One semester at Austin Community College. Student teams design, build, and deploy an AI tool for a public institution.
       </p>
 
-      <p class="text-sm text-gray-400 mb-10">In partnership with <a href="https://thepublicservicedesk.org" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">The Public Service Desk</a></p>
+      <p class="text-sm text-gray-400 mb-2">In partnership with <a href="https://thepublicservicedesk.org" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">The Public Service Desk</a></p>
+      <p class="text-sm text-gray-400 mb-10">First cohort in partnership with the <a href="https://sites.austincc.edu/incubator/" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">ACC Bioscience Incubator</a></p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="https://austincc.joinhandshake.com/jobs/10984374"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary text-lg px-8 py-4"
-        >
-          Apply on Handshake
-        </a>
-        <a
-          href="#info-sessions"
+          href="#program-details"
           class="inline-block text-lg px-8 py-4 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-[#1e3a5f] transition-colors"
         >
-          Info Sessions
+          Program Details
         </a>
       </div>
     </div>
@@ -65,7 +58,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
         <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
           <p class="text-sm text-text-light uppercase tracking-wide mb-2">Type</p>
-          <p class="text-lg font-bold text-text-dark text-center">Non-paid Internship</p>
+          <p class="text-lg font-bold text-text-dark text-center">Internship</p>
         </div>
         <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
           <p class="text-sm text-text-light uppercase tracking-wide mb-2">Term</p>
@@ -73,8 +66,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
           <p class="text-sm text-text-light uppercase tracking-wide mb-2">Client</p>
-          <p class="text-lg font-bold text-text-dark text-center">ACC Student Life Org</p>
-          <p class="text-sm text-text-light text-center">Serve the students</p>
+          <p class="text-lg font-bold text-text-dark text-center">
+            <a href="https://sites.austincc.edu/incubator/" target="_blank" rel="noopener noreferrer" class="hover:text-primary hover:underline">ACC Bioscience Incubator</a>
+          </p>
+          <p class="text-sm text-text-light text-center">Serve the founders</p>
         </div>
       </div>
     </div>
@@ -84,7 +79,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="py-20 bg-gray-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="section-heading text-center mb-4">4 Roles. Diverse Teams.</h2>
-      <p class="text-center text-text-light mb-12">4 open positions per track &mdash; we build diverse teams with complementary skills.</p>
+      <p class="text-center text-text-light mb-12">4 positions per track. Teams are built with complementary skills.</p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white rounded-2xl p-8 shadow-md text-center hover-lift">
@@ -93,7 +88,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-text-dark mb-2">Builders</h3>
+          <h3 class="text-xl font-bold text-text-dark mb-2">Developers</h3>
           <p class="text-text-light text-sm">Develop and deploy the AI tool</p>
         </div>
 
@@ -135,7 +130,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="section-heading mb-6">Who Can Apply?</h2>
       <p class="text-lg text-text-light leading-relaxed mb-4">
-        Any ACC student needing practicum or internship credit.
+        Any ACC student.
       </p>
       <p class="text-lg text-text-light leading-relaxed mb-4">
         Any department. Any major. <strong class="text-text-dark">No tech or AI experience needed.</strong>
@@ -146,47 +141,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Info Sessions -->
-  <section id="info-sessions" class="py-20 bg-gray-50 scroll-mt-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="section-heading text-center mb-12">Info Sessions</h2>
+  <!-- Program Details -->
+  <section id="program-details" class="py-20 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading text-center mb-12">Program Details</h2>
 
-      <div class="space-y-4">
-        <div class="bg-white rounded-xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 opacity-50">
-          <span class="font-bold text-gray-400 whitespace-nowrap line-through">Apr 30</span>
-          <span class="text-gray-400 line-through">Round Rock (Room 8202) &mdash; 12 pm &amp; 4 pm</span>
-          <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Passed</span>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Length</p>
+          <p class="text-lg font-bold text-text-dark text-center">One semester</p>
+          <p class="text-sm text-text-light text-center">16 weeks</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 opacity-50">
-          <span class="font-bold text-gray-400 whitespace-nowrap line-through">May 6</span>
-          <span class="text-gray-400 line-through">South Austin (Room 1210) &mdash; 12 pm &amp; 4 pm</span>
-          <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Passed</span>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Scope</p>
+          <p class="text-lg font-bold text-text-dark text-center">One client per cohort</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 opacity-50">
-          <span class="font-bold text-gray-400 whitespace-nowrap line-through">May 15</span>
-          <span class="text-gray-400 line-through">Highland (Room 2421) &mdash; 12 pm &amp; 4 pm</span>
-          <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Passed</span>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Training</p>
+          <p class="text-lg font-bold text-text-dark text-center">In person, most Saturdays</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 opacity-50">
-          <span class="font-bold text-gray-400 whitespace-nowrap line-through">Jun 3</span>
-          <span class="text-gray-400 line-through">Virtual Info Session &mdash; 12:00 PM CT</span>
-          <span class="text-xs text-gray-400 font-medium uppercase tracking-wide">Passed</span>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Workspace</p>
+          <p class="text-lg font-bold text-text-dark text-center">CGCS Rio Grande campus</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 border-2 border-red-200">
-          <span class="font-bold text-gray-400 whitespace-nowrap line-through">Jun 10</span>
-          <span class="text-gray-400 line-through">Virtual Info Session</span>
-          <span class="sm:ml-auto text-xs font-bold uppercase tracking-wide text-red-600 bg-red-50 px-2.5 py-1 rounded-full">Cancelled</span>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Commitment</p>
+          <p class="text-lg font-bold text-text-dark text-center">About 20 hours per week</p>
+          <p class="text-sm text-text-light text-center">Weekdays, plus Saturday training</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-sm border-2 border-dashed border-primary/30">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-            <span class="font-bold text-primary whitespace-nowrap">By Request</span>
-            <span class="text-text-dark">Info sessions are now scheduled individually.</span>
-          </div>
-          <p class="text-text-light text-sm mt-3 pl-0 sm:pl-[4.5rem]">
-            To schedule a meeting, please contact
-            <a href="mailto:marisela.perezmaita@austincc.edu" class="text-primary font-medium hover:underline">marisela.perezmaita@austincc.edu</a>.
-          </p>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Compensation</p>
+          <p class="text-lg font-bold text-text-dark text-center">Unpaid for the first cohort</p>
+          <p class="text-sm text-text-light text-center">Funding paid roles is a goal for future cohorts</p>
         </div>
+      </div>
+
+      <div class="mt-12 max-w-3xl mx-auto text-center">
+        <h3 class="text-xl font-bold text-text-dark mb-4">What the Training Covers</h3>
+        <p class="text-text-light leading-relaxed">
+          Every cohort works through user experience research, design thinking methods, the software development lifecycle, and agentic engineering. Teams apply all of it to one real client problem.
+        </p>
       </div>
     </div>
   </section>
@@ -194,30 +188,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Contact / CTA Footer -->
   <section class="py-20 bg-[#1e3a5f] text-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">Ready to Apply?</h2>
-      <p class="text-gray-300 mb-2">Questions? Reach out to:</p>
+      <h2 class="text-3xl font-bold mb-6">Help Us Fill the GAPS</h2>
+      <p class="text-gray-300 mb-6">
+        Each semester, a GAPS team works with one client to design, build, and deploy an AI tool. The Fall 2026 team works with the ACC Bioscience Incubator. The Spring 2027 client is to be announced. If your organization wants that spot, or you want to help fund paid student roles, get in touch.
+      </p>
+      <p class="text-gray-300 mb-2">Contact:</p>
       <div class="relative inline-block">
         <button
           id="copy-email"
           class="text-primary hover:underline text-lg font-medium cursor-pointer"
         >
-          marisela.perezmaita@austincc.edu
+          admin@cgcs-acc.org
         </button>
         <span id="copy-toast" class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-sm px-3 py-1 rounded-full opacity-0 pointer-events-none transition-opacity duration-300">
           Copied!
         </span>
       </div>
 
-      <div class="flex flex-col items-center gap-4 mt-10">
-        <a
-          href="https://austincc.joinhandshake.com/jobs/10984374"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary text-lg px-8 py-4"
-        >
-          Apply on Handshake
-        </a>
-      </div>
+      <p class="text-gray-400 text-sm mt-10 max-w-xl mx-auto">
+        Fall 2026 student applications are closed. To be considered for Spring 2027, contact <a href="mailto:admin@cgcs-acc.org" class="underline hover:text-white">admin@cgcs-acc.org</a>.
+      </p>
 
       <div class="flex justify-center gap-6 mt-10 text-sm text-gray-400">
         <a href="/" class="hover:text-white hover:underline">cgcs-acc.org</a>
@@ -227,7 +217,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
   <script>
     document.getElementById('copy-email')?.addEventListener('click', async () => {
-      await navigator.clipboard.writeText('marisela.perezmaita@austincc.edu');
+      await navigator.clipboard.writeText('admin@cgcs-acc.org');
       const toast = document.getElementById('copy-toast');
       if (toast) {
         toast.style.opacity = '1';

@@ -13,9 +13,9 @@ yarn-error.log*
 pnpm-debug.log*
 
 
-# environment variables
+# environment variables (.env.production is committed on purpose: it holds
+# only public Web3Forms client keys that Cloudflare CI builds need)
 .env
-.env.production
 
 # macOS-specific files
 .DS_Store

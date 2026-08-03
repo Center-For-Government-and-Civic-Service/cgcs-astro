@@ -248,12 +248,13 @@ const processSteps = [
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-text-dark mb-1">Email *</label>
+            <label for="email" class="block text-sm font-medium text-text-dark mb-1">ACC Email *</label>
             <input
               type="email"
               id="email"
               name="email"
               required
+              placeholder="name@austincc.edu"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
@@ -283,6 +284,62 @@ const processSteps = [
               <option value="workforce">Workforce Development</option>
               <option value="unsure">Not Sure Yet</option>
             </select>
+          </div>
+
+          <div id="simulation-fields" class="hidden space-y-6">
+            <div>
+              <label for="simulation-choice" class="block text-sm font-medium text-text-dark mb-1">Which simulation? *</label>
+              <select
+                id="simulation-choice"
+                name="simulationChoice"
+                disabled
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
+              >
+                <option value="" disabled selected>Select a simulation...</option>
+                <option value="Virescenia">Virescenia</option>
+                <option value="GeneSys">GeneSys</option>
+                <option value="The Dysfunctional Family Dinner">The Dysfunctional Family Dinner</option>
+                <option value="Not sure yet, recommend one">Not sure yet, recommend one</option>
+              </select>
+            </div>
+
+            <div>
+              <span class="block text-sm font-medium text-text-dark mb-2">Do you have a group to do the simulation with? (it is okay if not)</span>
+              <div class="flex items-center gap-6" role="radiogroup" aria-label="Do you have a group to do the simulation with?">
+                <label class="flex items-center gap-2 text-text-dark">
+                  <input
+                    type="radio"
+                    name="hasGroup"
+                    value="yes"
+                    disabled
+                    class="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                  />
+                  Yes
+                </label>
+                <label class="flex items-center gap-2 text-text-dark">
+                  <input
+                    type="radio"
+                    name="hasGroup"
+                    value="no"
+                    disabled
+                    class="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                  />
+                  No
+                </label>
+              </div>
+            </div>
+
+            <div id="group-size-field" class="hidden">
+              <label for="group-size" class="block text-sm font-medium text-text-dark mb-1">How many? *</label>
+              <input
+                type="number"
+                id="group-size"
+                name="groupSize"
+                min="2"
+                disabled
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
           </div>
 
           <div>
@@ -324,13 +381,48 @@ const processSteps = [
       document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
     });
 
+    // Conditional simulation fields
+    const serviceSelect = document.getElementById('service-select') as HTMLSelectElement;
+    const simulationFields = document.getElementById('simulation-fields');
+    const simulationChoice = document.getElementById('simulation-choice') as HTMLSelectElement;
+    const hasGroupRadios = document.querySelectorAll<HTMLInputElement>('input[name="hasGroup"]');
+    const groupSizeField = document.getElementById('group-size-field');
+    const groupSizeInput = document.getElementById('group-size') as HTMLInputElement;
+
+    function toggleGroupSize() {
+      const isSimulation = serviceSelect?.value === 'simulation';
+      const hasGroupYes = Array.from(hasGroupRadios).some((r) => r.checked && r.value === 'yes');
+      const show = isSimulation && hasGroupYes;
+      groupSizeField?.classList.toggle('hidden', !show);
+      if (groupSizeInput) {
+        groupSizeInput.disabled = !show;
+        groupSizeInput.required = show;
+      }
+    }
+
+    function toggleSimulationFields() {
+      const isSimulation = serviceSelect?.value === 'simulation';
+      simulationFields?.classList.toggle('hidden', !isSimulation);
+      if (simulationChoice) {
+        simulationChoice.disabled = !isSimulation;
+        simulationChoice.required = isSimulation;
+      }
+      hasGroupRadios.forEach((r) => {
+        r.disabled = !isSimulation;
+      });
+      toggleGroupSize();
+    }
+
+    serviceSelect?.addEventListener('change', toggleSimulationFields);
+    hasGroupRadios.forEach((r) => r.addEventListener('change', toggleGroupSize));
+
     // Service card CTA — scroll to form and pre-select service
     document.querySelectorAll('.service-cta').forEach((btn) => {
       btn.addEventListener('click', () => {
         const service = (btn as HTMLElement).dataset.service;
-        const select = document.getElementById('service-select') as HTMLSelectElement;
-        if (select && service) {
-          select.value = service;
+        if (serviceSelect && service) {
+          serviceSelect.value = service;
+          toggleSimulationFields();
         }
         document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth' });
         // Focus the first field after scroll
@@ -344,10 +436,10 @@ const processSteps = [
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
     if (serviceParam) {
-      const select = document.getElementById('service-select') as HTMLSelectElement;
       const validValues = ['tabletop', 'simulation', 'workforce', 'unsure'];
-      if (select && validValues.includes(serviceParam)) {
-        select.value = serviceParam;
+      if (serviceSelect && validValues.includes(serviceParam)) {
+        serviceSelect.value = serviceParam;
+        toggleSimulationFields();
       }
     }
 
@@ -356,12 +448,22 @@ const processSteps = [
     const successMsg = document.getElementById('form-success');
     const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
+    // Simulation requests route to Marisela's inbox with their own subject line
+    const defaultKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+    const simulationKey = import.meta.env.PUBLIC_WEB3FORMS_KEY_MARISELA || defaultKey;
+    const accessKeyInput = form?.querySelector('input[name="access_key"]') as HTMLInputElement;
+    const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
       }
+
+      const isSimulation = serviceSelect?.value === 'simulation';
+      if (accessKeyInput) accessKeyInput.value = isSimulation ? simulationKey : defaultKey;
+      if (subjectInput) subjectInput.value = isSimulation ? 'New Simulation Request — CGCS Website' : 'New Services Inquiry — CGCS Website';
 
       try {
         const res = await fetch('https://api.web3forms.com/submit', {

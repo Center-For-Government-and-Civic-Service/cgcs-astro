@@ -315,12 +315,12 @@ export const allEvents: EventItem[] = [
   },
   {
     title: 'Austin LangChain AI Meetup',
-    date: 'August 5, 2026',
+    date: 'August 11, 2026',
     time: '5:00 pm - 9:00 pm',
     image: 'https://secure.meetupstatic.com/photos/event/6/5/5/highres_531601621.jpeg',
     href: 'https://www.meetup.com/austin-langchain-ai-group/',
     newTab: true,
-    isoDate: '2026-08-05',
+    isoDate: '2026-08-11',
   },
   {
     title: 'Student Success Ascender Event',

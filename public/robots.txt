@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cgcs-acc.org/sitemap-index.xml

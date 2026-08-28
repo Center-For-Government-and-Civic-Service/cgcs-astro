@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="2nd Annual Central Texas Climate & Sustainability Summit"
+  description="A free, day-long working session on Friday, September 4, 2026 at the Center for Government & Civic Service, ACC Rio Grande Campus. Students, nonprofit leaders, city and county staff, and community organizers turn the region's priority climate issues into named actions. Lunch included."
+  ogImage="/images/climate-summit/flyer.jpg"
+>
+  <!-- Breadcrumbs -->
+  <nav class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <ol class="flex items-center gap-2 text-sm text-text-light">
+        <li><a href="/" class="hover:text-primary">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-text-dark font-medium">Climate & Sustainability Summit</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative bg-[#1e3a5f] text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] via-[#1e3a5f] to-primary/30"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+      <p class="text-primary font-semibold tracking-wide uppercase mb-4">
+        Friday, September 4, 2026 &middot; 10:00 AM &ndash; 3:00 PM
+      </p>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        2nd Annual Central Texas<br />Climate &amp; Sustainability Summit
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-4">
+        Free and open to the public. Lunch included.
+      </p>
+      <p class="text-lg text-gray-400 mb-10">
+        Hosted by the Center for Government &amp; Civic Service with the ACC Sustainability Club
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="https://sustainabilityclubatx.org/summit/rsvp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block text-lg px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+        >
+          RSVP Now
+        </a>
+        <a
+          href="#run-of-show"
+          class="inline-block text-lg px-8 py-4 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-[#1e3a5f] transition-colors"
+        >
+          See the Schedule
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Facts -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Date</p>
+          <p class="text-lg font-bold text-text-dark text-center">Friday, September 4, 2026</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Time</p>
+          <p class="text-lg font-bold text-text-dark text-center">10:00 AM &ndash; 3:00 PM</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Location</p>
+          <p class="text-lg font-bold text-text-dark text-center">CGCS, ACC Rio Grande Campus</p>
+          <p class="text-sm text-text-light text-center">1218 West Avenue, Austin, TX 78701</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Cost</p>
+          <p class="text-lg font-bold text-text-dark text-center">Free &amp; open to the public</p>
+          <p class="text-sm text-text-light text-center">Lunch included</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Flyer -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="section-heading mb-6">A Working Session, Not a Conference</h2>
+          <p class="text-lg text-text-light leading-relaxed mb-4">
+            The Central Texas Climate Summit brings students, nonprofit leaders, city and county
+            staff, and community organizers into one room. After a short panel, the majority of
+            the day is spent in small groups working through the region's priority issues
+            &mdash; air and water, transit and mobility, energy and grid resilience, land use
+            and equity, and civic infrastructure &mdash; and turning them into named actions.
+          </p>
+          <p class="text-lg text-text-light leading-relaxed mb-4">
+            The day closes with the room committing to shared goals for the year ahead.
+          </p>
+          <p class="text-lg text-text-light leading-relaxed">
+            Last year's inaugural summit drew more than 100 attendees and 15+ community
+            organizations.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <img
+            src="/images/climate-summit/flyer.jpg"
+            alt="Flyer for the 2nd Annual Central Texas Climate & Sustainability Summit — Friday, September 4, 2026, 1218 West Avenue, Austin, TX 78701. Free and open to the public."
+            class="rounded-2xl shadow-md w-full max-w-sm"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Run of Show -->
+  <section id="run-of-show" class="py-20 bg-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading text-center mb-12">Run of Show</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <ul class="space-y-4">
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">10:00 AM</span>
+            <span class="text-text-dark">Check-in, coffee and light refreshments, organization tabling</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">11:00 AM</span>
+            <span class="text-text-dark">Opening remarks</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">11:30 AM</span>
+            <span class="text-text-dark">Panel discussion</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">12:30 PM</span>
+            <span class="text-text-dark">Networking lunch (locally sourced, plant-based options)</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">1:00 PM</span>
+            <span class="text-text-dark">Breakout sessions</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">2:00 PM</span>
+            <span class="text-text-dark">Action planning</span>
+          </li>
+          <li class="flex gap-4 bg-gray-50 rounded-xl p-4">
+            <span class="font-bold text-primary whitespace-nowrap w-20 shrink-0">3:00 PM</span>
+            <span class="text-text-dark">Closing remarks</span>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <img
+            src="/images/climate-summit/event-rundown.png"
+            alt="Central Texas Climate Summit event rundown graphic listing the schedule from 10:00 AM check-in through 3:00 PM closing remarks"
+            class="rounded-2xl shadow-md w-full mb-6"
+            loading="lazy"
+          />
+          <a
+            href="/docs/climate-summit-event-rundown.pdf"
+            download
+            class="inline-block px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-colors"
+          >
+            Download the Event Rundown (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading text-center mb-12">Program</h2>
+
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl p-8 shadow-md">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Opening Remarks</p>
+          <p class="text-lg font-bold text-text-dark">Brigid Shea</p>
+          <p class="text-text-light">Travis County Commissioner, Precinct 2</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-md">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-4">Panel Discussion</p>
+          <ul class="space-y-4">
+            <li>
+              <p class="text-lg font-bold text-text-dark">Zach Baumer</p>
+              <p class="text-text-light">Director, City of Austin Climate Action &amp; Resilience</p>
+            </li>
+            <li>
+              <p class="text-lg font-bold text-text-dark">Amber Orr</p>
+              <p class="text-text-light">Sustainability Manager, Austin Community College</p>
+            </li>
+            <li>
+              <p class="text-lg font-bold text-text-dark">Annie Hardy</p>
+              <p class="text-text-light">AI development and Texas data centers, SXSW keynote speaker</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl p-8 shadow-md">
+            <p class="text-sm text-text-light uppercase tracking-wide mb-2">Emcee</p>
+            <p class="text-lg font-bold text-text-dark">Tatianna Cannon</p>
+            <p class="text-text-light">Green Workforce Collaborative</p>
+          </div>
+          <div class="bg-white rounded-2xl p-8 shadow-md">
+            <p class="text-sm text-text-light uppercase tracking-wide mb-2">Tabling</p>
+            <p class="text-lg font-bold text-text-dark">15 community organizations</p>
+            <p class="text-text-light">Visit their tables starting at check-in</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parking -->
+  <section id="parking" class="py-20 bg-white scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading text-center mb-4">Parking</h2>
+      <p class="text-center text-lg text-text-light mb-12 max-w-2xl mx-auto">
+        Parking is <strong class="text-text-dark">free and open to everyone</strong> &mdash; no
+        permit and no ACC affiliation required.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-4">
+          <div class="bg-gray-50 rounded-xl p-6">
+            <p class="text-sm text-text-light uppercase tracking-wide mb-2">Garage</p>
+            <p class="text-lg font-bold text-text-dark">ACC Rio Grande garage</p>
+            <p class="text-text-light">824 W 12th Street &middot; seven levels</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-6">
+            <p class="text-sm text-text-light uppercase tracking-wide mb-2">Entrance</p>
+            <p class="text-text-light">On 12th Street, just west of West Avenue</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-6">
+            <p class="text-sm text-text-light uppercase tracking-wide mb-2">ADA Parking</p>
+            <p class="text-text-light">ADA spaces in the lot on the north side, off 13th Street</p>
+          </div>
+          <a
+            href="/docs/rio-grande-campus-map.pdf"
+            download
+            class="inline-block px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-colors"
+          >
+            Download the Full Campus Map (PDF)
+          </a>
+        </div>
+
+        <img
+          src="/images/climate-summit/rio-grande-parking-map.png"
+          alt="ACC Rio Grande Campus map showing the 4000 parking garage entrance on 12th Street west of West Avenue, RGC 3000, and the ADA parking lot on the north side off 13th Street"
+          class="rounded-2xl shadow-md w-full"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Footer -->
+  <section class="py-20 bg-[#1e3a5f] text-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">Join Us on September 4</h2>
+      <p class="text-gray-300 mb-10">
+        Free and open to the public. Lunch included. Hosted by the Center for Government &amp;
+        Civic Service with the ACC Sustainability Club.
+      </p>
+      <a
+        href="https://sustainabilityclubatx.org/summit/rsvp"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block text-lg px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+      >
+        RSVP Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>

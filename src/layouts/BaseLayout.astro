@@ -8,17 +8,20 @@ interface Props {
   description?: string;
   /** When true, `title` is used verbatim instead of getting the site suffix. */
   fullTitle?: boolean;
+  /** Path to a page-specific share image; defaults to the CGCS logo. */
+  ogImage?: string;
 }
 
 const {
   title,
   description = 'Center for Government and Civic Service at Austin Community College',
   fullTitle = false,
+  ogImage: ogImagePath = '/images/logos/logo-color.png',
 } = Astro.props;
 
 const pageTitle = fullTitle ? title : `${title} - Center for Government and Civic Service`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://cgcs-acc.org').href;
-const ogImage = new URL('/images/logos/logo-color.png', Astro.site ?? 'https://cgcs-acc.org').href;
+const ogImage = new URL(ogImagePath, Astro.site ?? 'https://cgcs-acc.org').href;
 ---
 
 <!doctype html>

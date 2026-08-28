@@ -349,6 +349,14 @@ export const allEvents: EventItem[] = [
     isoDate: '2026-08-21',
   },
   {
+    title: '2nd Annual Central Texas Climate & Sustainability Summit',
+    date: 'September 4, 2026',
+    time: '10:00 am - 3:00 pm',
+    image: '/images/climate-summit/flyer.jpg',
+    href: '/climate-summit',
+    isoDate: '2026-09-04',
+  },
+  {
     title: 'Austin Forum: The Future is Low-Tech',
     date: 'September 1, 2026',
     time: '6:15 pm - 7:45 pm',

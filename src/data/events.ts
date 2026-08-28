@@ -468,6 +468,15 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-10-28',
   },
+  {
+    title: 'ACM/IEEE Austin Novemeber Tech Talks & Community Showcase',
+    date: 'November 9, 2026',
+    time: '6:00 pm - 8:00 pm',
+    image: 'https://secure.meetupstatic.com/photos/event/4/2/0/d/highres_530236909.jpeg',
+    href: 'https://www.meetup.com/acm-austin/events/316315179/',
+    newTab: true,
+    isoDate: '2026-11-09',
+  },
 ];
 
 const now = new Date();

@@ -540,6 +540,8 @@ export const allEvents: EventItem[] = [
     time: '9:00 am start',
     image: '/images/riverhacks-nasa-space-apps-2026.jpg',
     objectPosition: 'top',
+    href: 'https://luma.com/n9rvutt0',
+    newTab: true,
     isoDate: '2026-11-15',
   },
 ];

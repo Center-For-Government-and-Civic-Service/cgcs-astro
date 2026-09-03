@@ -477,6 +477,36 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-11-09',
   },
+  {
+    title: 'Environmental Screening: Saving the Barton Creek Greenbelt',
+    date: 'September 7, 2026',
+    image: '/images/logos/logo-color.png',
+    isoDate: '2026-09-07',
+  },
+  {
+    title: 'Workshop on Bias & Critical Thinking',
+    date: 'September 24, 2026',
+    image: '/images/logos/logo-color.png',
+    isoDate: '2026-09-24',
+  },
+  {
+    title: 'Community Dialogue: Fishbowl on the 2nd Amendment',
+    date: 'October 6, 2026',
+    image: '/images/logos/logo-color.png',
+    isoDate: '2026-10-06',
+  },
+  {
+    title: 'Law Panel: Legal Careers & Issues',
+    date: 'October 7, 2026',
+    image: '/images/logos/logo-color.png',
+    isoDate: '2026-10-07',
+  },
+  {
+    title: 'Skull Games Task Force Weekend',
+    date: 'November 6-8, 2026',
+    image: '/images/logos/logo-color.png',
+    isoDate: '2026-11-08',
+  },
 ];
 
 const now = new Date();

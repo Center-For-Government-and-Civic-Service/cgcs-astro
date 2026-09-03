@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Modal from '../../components/Modal.astro';
 
-const subInitiatives = [
+const allSubInitiatives = [
   {
     id: 'hackathons-modal',
     title: 'RiverHacks: ACC\'s Official Hackathon',
@@ -52,6 +52,9 @@ const subInitiatives = [
     },
   },
   {
+    // Hidden for now — the AI Summer Intensive it points to is not a CGCS event.
+    // Kept here so the copy isn't lost; flip `hidden` to false to bring it back.
+    hidden: true,
     id: 'workshop-modal',
     title: 'Skill Building Workshop',
     description: 'Dive Into the Tech World',
@@ -91,6 +94,46 @@ const subInitiatives = [
         },
       ],
       lookingAhead: 'Join us for the AI Summer Intensive, a 3-day event presented by the Austin AI Alliance (AAIA) with CGCS support, where Executives, Developers, and the general public can get trained on the latest trends of AI in the real world.',
+    },
+  },
+  {
+    id: 'sttr-modal',
+    title: 'STTR: Small Business Technology Transfer',
+    description: 'Student Research for Defense Innovation',
+    image: '/images/logos/logo-color.png',
+    modalContent: {
+      description: 'STTR is a federal program that funds small businesses to develop new technology in formal partnership with a research institution. Through the Department of the Air Force\u2019s STTR program, ACC students join the research side of that partnership \u2014 contributing to the development of drone systems through hands-on research, design, and planning work.',
+      accordionItems: [
+        {
+          title: 'What STTR Is',
+          description: 'Small Business Technology Transfer is a federal funding program that requires a small business and a U.S. research institution to work together on a formal cooperative research effort.',
+          details: [
+            'Pairs a small business with a U.S. research institution',
+            'At least 40% of the work is performed by the small business',
+            'At least 30% of the work is performed by the research institution',
+            'Air Force and Space Force awards are administered through AFWERX',
+          ],
+        },
+        {
+          title: 'The Air Force Drone Project',
+          description: 'CGCS students contribute to the development of drone systems for the Air Force as the research-institution partner on an STTR effort.',
+          details: [
+            'Applied research supporting drone system development',
+            'Design and planning work on specific components',
+            'Real deliverables on a funded federal research effort',
+          ],
+        },
+        {
+          title: 'What Students Do',
+          description: 'Students work as researchers and designers, not observers \u2014 the STTR structure requires meaningful contribution from the research partner.',
+          details: [
+            'Conduct research that feeds directly into the design process',
+            'Participate in design planning and component development',
+            'Build experience translating research into engineered deliverables',
+          ],
+        },
+      ],
+      lookingAhead: 'The STTR cohort launches in Spring 2027. Program details, eligibility, and application dates are being finalized \u2014 check back or reach out to CGCS to be notified when applications open.',
     },
   },
   {
@@ -156,6 +199,8 @@ const subInitiatives = [
     },
   },
 ];
+
+const subInitiatives = allSubInitiatives.filter((item) => !item.hidden);
 
 const badges = [
   {

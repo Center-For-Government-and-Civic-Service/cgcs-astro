@@ -529,7 +529,7 @@ export const allEvents: EventItem[] = [
     title: 'Anti-Human Trafficking Volunteer Opportunity: Skull Games Task Force',
     date: 'November 7-8, 2026',
     time: '8:00 am - 5:00 pm',
-    image: '/images/logos/logo-color.png',
+    image: '/images/skull-games-task-force.jpg',
     href: 'https://forms.gle/XGTDfZx4PGvSrtDq8',
     newTab: true,
     isoDate: '2026-11-08',

@@ -534,6 +534,14 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-11-08',
   },
+  {
+    title: 'RiverHacks × NASA Space Apps Challenge 2026',
+    date: 'November 14-15, 2026',
+    time: '9:00 am start',
+    image: '/images/riverhacks-nasa-space-apps-2026.jpg',
+    objectPosition: 'top',
+    isoDate: '2026-11-15',
+  },
 ];
 
 const now = new Date();

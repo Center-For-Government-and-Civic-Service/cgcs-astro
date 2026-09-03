@@ -8,10 +8,13 @@ interface Props {
   newTab?: boolean;
   modalId?: string;
   objectFit?: 'cover' | 'contain';
+  /** Which part of the image stays visible when cropped — defaults to 'center' */
+  objectPosition?: 'top' | 'center' | 'bottom';
 }
 
-const { title, date, time, image, href = '#', newTab = false, modalId, objectFit = 'cover' } = Astro.props;
-const imgClass = `w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`;
+const { title, date, time, image, href = '#', newTab = false, modalId, objectFit = 'cover', objectPosition = 'center' } = Astro.props;
+const positionClass = { top: 'object-top', center: 'object-center', bottom: 'object-bottom' }[objectPosition];
+const imgClass = `w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} ${positionClass} group-hover:scale-105 transition-transform duration-300`;
 ---
 
 {modalId ? (

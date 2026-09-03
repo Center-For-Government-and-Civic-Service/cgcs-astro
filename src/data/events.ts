@@ -12,6 +12,8 @@ export interface EventItem {
   isoDate: string;
   /** How the image fills the card — defaults to 'cover'; use 'contain' for banner-style images */
   objectFit?: 'cover' | 'contain';
+  /** Which part of the image stays visible when cropped — defaults to 'center' */
+  objectPosition?: 'top' | 'center' | 'bottom';
 }
 
 export const allEvents: EventItem[] = [
@@ -353,6 +355,7 @@ export const allEvents: EventItem[] = [
     date: 'September 4, 2026',
     time: '10:00 am - 3:00 pm',
     image: '/images/climate-summit/flyer.jpg',
+    objectPosition: 'top',
     href: '/climate-summit',
     isoDate: '2026-09-04',
   },
@@ -482,6 +485,7 @@ export const allEvents: EventItem[] = [
     date: 'September 14, 2026',
     time: '10:45 am - 12:15 pm',
     image: '/images/foreverland-screening.jpg',
+    objectPosition: 'top',
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSdRei3KYb4rLhoRZt2JVm_ncrGssZn4oM3sboN3hMCUPoMP6A/viewform',
     newTab: true,
     isoDate: '2026-09-14',
@@ -491,6 +495,7 @@ export const allEvents: EventItem[] = [
     date: 'September 16, 2026',
     time: '6:00 pm - 7:30 pm',
     image: '/images/foreverland-screening.jpg',
+    objectPosition: 'top',
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSdRei3KYb4rLhoRZt2JVm_ncrGssZn4oM3sboN3hMCUPoMP6A/viewform',
     newTab: true,
     isoDate: '2026-09-16',

@@ -545,6 +545,15 @@ export const allEvents: EventItem[] = [
     newTab: true,
     isoDate: '2026-11-15',
   },
+  {
+    title: 'AIMUG Monthly Mixer & Showcase',
+    date: 'December 7, 2026',
+    time: '6:00 pm - 9:00 pm',
+    image: 'https://secure.meetupstatic.com/photos/event/6/5/5/highres_531601621.jpeg',
+    href: 'https://www.meetup.com/austin-langchain-ai-group/events/316397087/',
+    newTab: true,
+    isoDate: '2026-12-07',
+  },
 ];
 
 const now = new Date();

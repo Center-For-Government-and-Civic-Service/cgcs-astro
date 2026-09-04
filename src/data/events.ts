@@ -522,6 +522,8 @@ export const allEvents: EventItem[] = [
     date: 'October 7, 2026',
     time: '2:30 pm - 4:00 pm',
     image: '/images/logos/logo-color.png',
+    href: 'https://www.eventbrite.com/e/law-panel-tickets-1999711301333?aff=oddtdtcreator',
+    newTab: true,
     isoDate: '2026-10-07',
   },
   {

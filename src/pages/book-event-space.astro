@@ -54,43 +54,102 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
 
-        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-3">Austin Community College Event Request Form</h2>
-        <p class="text-text-light mb-8">
-          Reservations are managed through Austin Community College's official request system. The form covers all event details and typically takes <strong class="text-text-dark">up to 10-15 minutes</strong> to complete. Have the following ready before you begin:
-        </p>
+        <div id="availability-banner" class="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-2xl px-4 py-3 mb-8 text-sm text-text-dark">
+          <span aria-hidden="true">📅</span>
+          <p class="flex-1"><strong>2026 is fully booked.</strong> We're now taking requests for 2027 dates.</p>
+          <button id="banner-dismiss" type="button" aria-label="Dismiss availability notice" class="text-text-dark/50 hover:text-text-dark text-lg leading-none">&times;</button>
+        </div>
+        <button id="banner-restore" type="button" hidden class="text-xs text-primary underline mb-8">
+          Show availability notice again
+        </button>
 
-        <ul class="space-y-3 mb-10">
-          {[
-            'Your name, email, and phone number',
-            'Preferred event date(s) and times',
-            'Estimated number of attendees',
-            'A/V, catering, and room setup needs',
-            'Your organization or department name',
-          ].map(item => (
-            <li class="flex items-start gap-3 text-text-light">
-              <svg class="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-4">When's your event?</h2>
+        <div id="year-toggle" role="group" aria-label="Select event year" class="inline-flex bg-gray-100 rounded-full p-1 gap-1 mb-8">
+          <button type="button" data-yr="2026" class="year-btn px-5 py-2 rounded-full text-sm font-semibold text-text-light transition-colors">2026</button>
+          <button type="button" data-yr="2027" class="year-btn px-5 py-2 rounded-full text-sm font-semibold text-text-dark bg-white shadow-sm transition-colors">2027</button>
+        </div>
 
-        <a
-          href="https://app.smartsheet.com/b/form/cd2f5559c5b6458fbfe61490f4a90f93"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary inline-flex items-center gap-2 text-base"
-        >
-          Open Event Request Form
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+        <div id="content-2027">
+          <p class="text-text-light mb-8">
+            Reservations are managed through Austin Community College's official request system. The form covers all event details and typically takes <strong class="text-text-dark">up to 10-15 minutes</strong> to complete. Have the following ready before you begin:
+          </p>
 
-        <p class="text-sm text-text-light mt-6 italic">
-          Event requests are not guaranteed until full payment is received. Please allow 1–4 business days for a response.
-        </p>
+          <ul class="space-y-3 mb-10">
+            {[
+              'Your name, email, and phone number',
+              'Preferred event date(s) and times',
+              'Estimated number of attendees',
+              'A/V, catering, and room setup needs',
+              'Your organization or department name',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-text-light">
+                <svg class="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://app.smartsheet.com/b/form/cd2f5559c5b6458fbfe61490f4a90f93"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary inline-flex items-center gap-2 text-base"
+          >
+            Open Event Request Form
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+          <p class="text-sm text-text-light mt-6 italic">
+            Event requests are not guaranteed until full payment is received. Please allow 1–4 business days for a response.
+          </p>
+        </div>
+
+        <div id="content-2026" hidden>
+          <p class="text-text-dark font-semibold mb-2">2026 is fully booked.</p>
+          <p class="text-text-light mb-6">
+            There's no formal waitlist — the fastest way to catch an opening is to check back here. 2027 has plenty of dates open right now.
+          </p>
+          <button id="switch-2027" type="button" class="btn-outline text-base">
+            See 2027 options
+          </button>
+        </div>
+
+        <script>
+          const yearButtons = document.querySelectorAll<HTMLButtonElement>('#year-toggle .year-btn');
+          const content2027 = document.getElementById('content-2027')!;
+          const content2026 = document.getElementById('content-2026')!;
+
+          function setYear(yr: string) {
+            yearButtons.forEach((btn) => {
+              const active = btn.dataset.yr === yr;
+              btn.classList.toggle('bg-white', active);
+              btn.classList.toggle('shadow-sm', active);
+              btn.classList.toggle('text-text-dark', active);
+              btn.classList.toggle('text-text-light', !active);
+            });
+            content2027.hidden = yr !== '2027';
+            content2026.hidden = yr !== '2026';
+          }
+
+          yearButtons.forEach((btn) => btn.addEventListener('click', () => setYear(btn.dataset.yr!)));
+          document.getElementById('switch-2027')?.addEventListener('click', () => setYear('2027'));
+
+          const banner = document.getElementById('availability-banner')!;
+          const bannerDismiss = document.getElementById('banner-dismiss')!;
+          const bannerRestore = document.getElementById('banner-restore')!;
+          bannerDismiss.addEventListener('click', () => {
+            banner.hidden = true;
+            bannerRestore.hidden = false;
+          });
+          bannerRestore.addEventListener('click', () => {
+            banner.hidden = false;
+            bannerRestore.hidden = true;
+          });
+        </script>
       </div>
     </div>
   </section>

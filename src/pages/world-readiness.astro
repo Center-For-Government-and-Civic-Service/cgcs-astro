@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="World Readiness Essay Submission"
-  description="Ready for What? The World Readiness Conference invites students to submit a personal essay on what it takes to thrive in an uncertain future, hosted by the Center for Government and Civic Service at Austin Community College."
+  description="Ready for What? Submit a personal essay on your definition of world readiness by November 16, 2026. Selected students present at the World Readiness Conference on February 12, 2027 and receive a $250 stipend."
 >
   <!-- Breadcrumbs -->
   <nav class="bg-gray-50 border-b border-gray-200">
@@ -22,9 +22,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="absolute inset-0 bg-gradient-to-br from-footer-bg via-footer-bg to-accent-orange/40"></div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
       <p class="text-accent-orange font-semibold tracking-wide uppercase mb-4">
-        A Collaborative Conference for Student Success in an Uncertain World
+        A Collaborative Conference for Student Success and World Readiness
       </p>
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">World Readiness</h1>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Ready for What?</h1>
       <p class="text-xl md:text-2xl text-gray-300 mb-10">
         Hosted by the Center for Government &amp; Civic Service
       </p>
@@ -39,34 +39,64 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Prompt -->
-  <section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="section-heading mb-2 text-center">Essay Submission</h2>
-      <p class="text-2xl font-bold text-primary text-center mb-10">Ready for What?</p>
-      <p class="text-lg text-text-light leading-relaxed mb-6">
-        The World Readiness Conference seeks to explore and understand what is required to be
-        "ready" for the future &mdash; and, in doing so, better focus an approach to higher
-        learning that prepares our students, community, and society to succeed and prosper while
-        making a potent contribution to improving our world.
-      </p>
-      <p class="text-lg text-text-light leading-relaxed">
-        We invite students to share a personal essay reflecting on what they want and need to
-        thrive in the future.
-      </p>
+  <!-- Quick Facts -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[120px] text-center">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Essay Deadline</p>
+          <p class="text-lg font-bold text-text-dark">November 16, 2026</p>
+          <p class="text-sm text-text-light">11:59 PM</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[120px] text-center">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Conference Date</p>
+          <p class="text-lg font-bold text-text-dark">February 12, 2027</p>
+          <p class="text-sm text-text-light">10:00 AM &ndash; 4:00 PM</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[120px] text-center">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">Location</p>
+          <p class="text-lg font-bold text-text-dark">CGCS, ACC RGC</p>
+          <p class="text-sm text-text-light">Building 3000</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6 flex flex-col items-center justify-center min-h-[120px] text-center">
+          <p class="text-sm text-text-light uppercase tracking-wide mb-2">If Selected</p>
+          <p class="text-lg font-bold text-text-dark">Present on a Panel</p>
+          <p class="text-sm text-text-light">$250 stipend</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Submission requirements -->
-  <section class="py-20 bg-gray-50">
+  <!-- Writing Prompt -->
+  <section class="py-16 bg-gray-50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-6">What to Submit</h2>
+      <h2 class="section-heading mb-10 text-center">Writing Prompt</h2>
 
-        <ul class="space-y-3 mb-10">
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+        <p class="text-sm font-semibold text-primary uppercase tracking-wide mb-3">Introduction</p>
+        <p class="text-text-light leading-relaxed mb-4">
+          The Boyer 2030 Commission Report (2022) defines <em>world readiness</em> as "...a vision
+          of undergraduate education that includes and goes beyond the essential goal of near-term
+          workforce readiness to empower students for citizenship, life, and work throughout their
+          lifetimes...that broadens horizons, stimulates curiosity and involves discovery of fields
+          of knowledge, ways of knowing, and perspectives well beyond what most students have
+          encountered..." (pp. 11&ndash;12). But the ways in which students translate world
+          readiness into their everyday lives is unique to them.
+        </p>
+
+        <p class="text-sm font-semibold text-primary uppercase tracking-wide mb-3 mt-8">The Question</p>
+        <p class="text-2xl font-bold text-text-dark mb-4">What is your definition of world readiness?</p>
+        <p class="text-text-light italic leading-relaxed mb-6">
+          We are collectively working to understand the concept of world readiness. There are no
+          wrong answers to this question. You are empowered to define it for yourself.
+        </p>
+
+        <p class="text-text-dark font-medium mb-3">Here are some ideas on how to approach this question:</p>
+        <ul class="space-y-3 mb-8">
           {[
-            'Your full name and student email address',
-            'Your personal essay, uploaded as a Word or Docs document',
+            'What social, economic, political, and technological circumstances must we consider?',
+            "What are you doing today – both through your formal education and in your everyday life – that's leading you to the person you want to be?",
+            'What does living a good life mean to you?',
           ].map(item => (
             <li class="flex items-start gap-3 text-text-light">
               <svg class="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,9 +107,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           ))}
         </ul>
 
+        <div class="bg-gray-50 rounded-2xl p-6">
+          <p class="text-text-dark font-semibold mb-3">Requirements</p>
+          <ul class="space-y-2 text-text-light">
+            <li>Choose one or more of the questions above.</li>
+            <li>Write an essay of <strong class="text-text-dark">at least 1,200 words</strong>.</li>
+            <li>Provide examples from your life and references that support your argument(s).</li>
+            <li>
+              Include at least <strong class="text-text-dark">two footnotes</strong> &mdash; one
+              referencing the Boyer 2030 Commission Report and one additional reference.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submission requirements -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-6">What to Submit</h2>
+
+        <ul class="space-y-3 mb-10">
+          {[
+            'Your full name and student email address',
+            'Your essay, uploaded as a Word or Docs document (1,200+ words, 2+ footnotes)',
+          ].map(item => (
+            <li class="flex items-start gap-3 text-text-light">
+              <svg class="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <p class="text-text-light mb-2">
+          Open to students across academic institutions. Essays are due
+          <strong class="text-text-dark"> November 16, 2026 at 11:59 PM</strong>.
+        </p>
         <p class="text-text-light mb-10">
-          Selected students may be invited to present as part of a panel discussion during the
-          conference &mdash; the submission form will ask whether you'd be comfortable with that.
+          Selected students present as part of a panel discussion at the conference on
+          <strong class="text-text-dark"> February 12, 2027</strong> and receive a
+          <strong class="text-text-dark"> $250 stipend</strong>.
         </p>
 
         <a
@@ -93,6 +164,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Questions -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-4">Have Questions?</h2>
+      <p class="text-text-light mb-8">
+        We're happy to work directly with you on the research and writing process. Reach out to
+        any of us:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {[
+          { name: 'Bryan Port', email: 'bryan.port@austincc.edu' },
+          { name: 'Marisela Perez-Maita', email: 'marisela.perezmaita@austincc.edu' },
+          { name: 'Christopher Rzigalinski', email: 'christopher.rzigalinski@austincc.edu' },
+        ].map(contact => (
+          <a
+            href={`mailto:${contact.email}`}
+            class="block bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:border-primary/40 hover:shadow-md transition-all"
+          >
+            <p class="font-bold text-text-dark">{contact.name}</p>
+            <p class="text-sm text-primary mt-1 break-all">{contact.email}</p>
+          </a>
+        ))}
       </div>
     </div>
   </section>

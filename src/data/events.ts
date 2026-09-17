@@ -708,6 +708,16 @@ export const allEvents: EventItem[] = [
     isoDate: '2027-05-03',
     category: 'interest',
   },
+  {
+    title: '2026 UT REAL Health AI Symposium',
+    date: 'October 7, 2026',
+    time: '7:00 am - 7:00 pm',
+    image: 'https://austin-ai.org/wp-content/uploads/2026/08/2026-AI-Symposium_Austin-AI-Alliance.png',
+    href: 'https://austin-ai.org/event/2026-ut-real-health-ai-symposium/',
+    newTab: true,
+    isoDate: '2026-10-07',
+    category: 'interest',
+  },
 ];
 
 const now = new Date();

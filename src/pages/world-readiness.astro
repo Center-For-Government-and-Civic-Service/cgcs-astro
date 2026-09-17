@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="World Readiness Essay Submission"
+  description="Ready for What? The World Readiness Conference invites students to submit a personal essay on what it takes to thrive in an uncertain future, hosted by the Center for Government and Civic Service at Austin Community College."
+>
+  <!-- Breadcrumbs -->
+  <nav class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <ol class="flex items-center gap-2 text-sm text-text-light">
+        <li><a href="/" class="hover:text-primary">Home</a></li>
+        <li class="text-gray-400">/</li>
+        <li class="text-text-dark font-medium">World Readiness</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative bg-footer-bg text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-footer-bg via-footer-bg to-accent-orange/40"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+      <p class="text-accent-orange font-semibold tracking-wide uppercase mb-4">
+        A Collaborative Conference for Student Success in an Uncertain World
+      </p>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">World Readiness</h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-10">
+        Hosted by the Center for Government &amp; Civic Service
+      </p>
+      <a
+        href="https://forms.gle/gpM1X2QZDtwWWnXx6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block text-lg px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+      >
+        Submit Your Essay
+      </a>
+    </div>
+  </section>
+
+  <!-- Prompt -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-heading mb-2 text-center">Essay Submission</h2>
+      <p class="text-2xl font-bold text-primary text-center mb-10">Ready for What?</p>
+      <p class="text-lg text-text-light leading-relaxed mb-6">
+        The World Readiness Conference seeks to explore and understand what is required to be
+        "ready" for the future &mdash; and, in doing so, better focus an approach to higher
+        learning that prepares our students, community, and society to succeed and prosper while
+        making a potent contribution to improving our world.
+      </p>
+      <p class="text-lg text-text-light leading-relaxed">
+        We invite students to share a personal essay reflecting on what they want and need to
+        thrive in the future.
+      </p>
+    </div>
+  </section>
+
+  <!-- Submission requirements -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-6">What to Submit</h2>
+
+        <ul class="space-y-3 mb-10">
+          {[
+            'Your full name and student email address',
+            'Your personal essay, uploaded as a Word or Docs document',
+          ].map(item => (
+            <li class="flex items-start gap-3 text-text-light">
+              <svg class="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <p class="text-text-light mb-10">
+          Selected students may be invited to present as part of a panel discussion during the
+          conference &mdash; the submission form will ask whether you'd be comfortable with that.
+        </p>
+
+        <a
+          href="https://forms.gle/gpM1X2QZDtwWWnXx6"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary inline-flex items-center gap-2 text-base"
+        >
+          Submit Your Essay
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

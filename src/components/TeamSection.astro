@@ -1,0 +1,82 @@
+---
+const teamGroups = [
+  {
+    heading: 'Leadership',
+    members: [
+      { name: 'Bryan Port', role: 'Director, CGCS', image: '/images/team/bryan.jpg' },
+      { name: 'Marisela Perez', role: 'Deputy Director', role2: 'Strategic Planner in Civic Leadership', image: '/images/team/marisela.jpg' },
+    ],
+  },
+  {
+    heading: 'Staff',
+    members: [
+      { name: 'Austin Wells', role: 'Strategic Planner for Community Relations and Environmental Affairs', image: '/images/team/austin.jpg' },
+      { name: 'Cate Thomason', role: 'Strategic Planner in Public Service', image: '/images/team/cate.png' },
+      { name: 'Stefano Casafranca', role: 'Strategic Planner in Citizenship & Tech (UX/AI Technologies)', image: '/images/stefanoFinal2.png' },
+      { name: 'Vanessa Trujano', role: 'Strategic Planner and Communicator', image: '/images/team/vanessa.jpg' },
+      { name: 'Eimanie Thomas', role: 'Strategic Planner, Business Operations', image: '/images/team/eimanie.jpg' },
+      { name: 'Kristen Nemain', role: 'Strategic Planner, Community Relations', image: '/images/team/kristen.jpg' },
+      { name: 'Abigail Zenko', role: 'Strategic Planner in Business Operations', image: '/images/team/abigail.jpeg' },
+    ],
+  },
+  {
+    heading: 'Student Fellows',
+    members: [
+      { name: 'Gordon Ray', role: 'Student Fellow', image: '/images/team/gordon.jpg' },
+      { name: 'Ella Luce', role: 'Student Fellow', image: '/images/team/ella.jpg' },
+      { name: 'Betsy Soberanes', role: 'Student Fellow', image: '/images/team/betsy.jpeg' },
+    ],
+  },
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto space-y-16">
+    {teamGroups.map((group) => (
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-6 px-4 sm:px-6 lg:px-8">{group.heading}</h2>
+        <div class="team-row overflow-x-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex gap-4 w-max">
+            {group.members.map((member) => (
+              <div class="w-36 sm:w-40 flex-shrink-0 snap-start">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg h-full">
+                  <div class="aspect-square overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      loading="lazy"
+                      class={`w-full h-full object-cover ${member.position ? '' : 'object-top'}`}
+                      style={member.position ? `object-position: ${member.position}` : ''}
+                    />
+                  </div>
+                  <div class="p-4 text-center min-h-[130px] flex flex-col justify-center">
+                    <h3 class="text-base font-bold text-text-dark leading-tight">{member.name}</h3>
+                    <p class="text-text-light mt-1 text-xs leading-tight">{member.role}</p>
+                    {member.role2 && (
+                      <p class="text-text-light text-xs leading-tight">{member.role2}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .team-row {
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 1rem;
+    scrollbar-width: thin;
+  }
+  .team-row::-webkit-scrollbar {
+    height: 6px;
+  }
+  .team-row::-webkit-scrollbar-thumb {
+    background: var(--color-border, #d1d5db);
+    border-radius: 999px;
+  }
+</style>

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
-import TeamCarousel from '../components/TeamCarousel.astro';
+import TeamSection from '../components/TeamSection.astro';
 import InitiativeCard from '../components/InitiativeCard.astro';
 import EventCard from '../components/EventCard.astro';
 import ImpactCounter from '../components/ImpactCounter.astro';
@@ -179,32 +179,30 @@ const simulationsData = {
 <BaseLayout title={seo.title} description={seo.description} fullTitle>
   <script type="application/ld+json" slot="head" is:inline set:html={organizationJsonLd} />
 
+  <!-- World Readiness Essay Callout -->
+  <a
+    href="/world-readiness"
+    aria-label="World Readiness: Students, submit a personal essay for &quot;Ready for What?&quot; — Learn more"
+    class="block relative py-3 overflow-hidden bg-[#3cc9f4]"
+  >
+    <div class="flex whitespace-nowrap animate-scroll-left" aria-hidden="true">
+      {Array.from({ length: 10 }).map(() => (
+        <span class="inline-flex items-center gap-3 text-white font-bold text-sm sm:text-base mx-6 shrink-0">
+          <span class="uppercase tracking-wide">World Readiness</span>
+          <span class="opacity-70">&mdash;</span>
+          <span class="font-medium">Students: submit a personal essay, &quot;Ready for What?&quot;</span>
+          <span class="opacity-70">&middot;</span>
+          <span class="underline underline-offset-2">Learn more</span>
+        </span>
+      ))}
+    </div>
+  </a>
+
   <!-- Hero Section -->
   <Hero />
 
   <!-- Marquee -->
   <Marquee />
-
-  <!-- World Readiness Essay Callout -->
-  <section class="bg-footer-bg text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-      <a
-        href="/world-readiness"
-        class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center sm:text-left group"
-      >
-        <p class="text-sm sm:text-base">
-          <span class="text-accent-orange font-semibold uppercase tracking-wide">World Readiness</span>
-          <span class="text-gray-300"> &mdash; Students: submit a personal essay, "Ready for What?"</span>
-        </p>
-        <span class="inline-flex items-center gap-2 text-white font-semibold whitespace-nowrap group-hover:gap-3 transition-all">
-          Learn more
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </span>
-      </a>
-    </div>
-  </section>
 
   <!-- About Us Section -->
   <section id="aboutUs" class="py-20 bg-white">
@@ -222,8 +220,8 @@ const simulationsData = {
     </div>
   </section>
 
-  <!-- Team Carousel -->
-  <TeamCarousel />
+  <!-- Team -->
+  <TeamSection />
 
   <!-- Initiatives Section -->
   <section id="initiatives" class="py-20 bg-white">

@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Excalifont (Excalidraw), SIL OFL 1.1, see public/fonts/excalifont/OFL.txt */
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/excalifont/Excalifont-Latin.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/excalifont/Excalifont-LatinExt.woff2') format('woff2');
+  font-display: swap;
+  unicode-range: U+100-130, U+132-137, U+139-149, U+14c-151, U+154-17e;
+}
+
 @theme {
   --breakpoint-nav: 1060px;
 
@@ -14,6 +27,7 @@
   --color-footer-bg: #1a1a1a;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Excalifont', 'Inter', system-ui, sans-serif;
 }
 
 /* Custom utility classes */
@@ -28,6 +42,13 @@
 
   .section-heading {
     @apply text-3xl md:text-4xl font-bold text-text-dark;
+  }
+
+  /* Excalifont ships one weight; a same-color stroke gives it a clean bold */
+  .hand-bold {
+    @apply font-hand font-normal;
+    -webkit-text-stroke: 0.045em currentColor;
+    paint-order: stroke fill;
   }
 
   .card {

@@ -2,8 +2,8 @@
 /**
  * Sync partner events into src/data/events.ts.
  *
- * Sources (all machine-readable feeds, no HTML scraping):
- *   - Austin Forum on Technology & Society  (Squarespace JSON)
+ * Sources (machine-readable feeds, except the Forum, which has none):
+ *   - Austin Forum on Technology & Society  (event pages on austinforum.org)
  *   - Austin AI Alliance                    (The Events Calendar REST API)
  *   - Austin LangChain AIMUG                (Meetup iCal feed)
  *   - ACM Austin                            (Meetup iCal feed)
@@ -92,20 +92,53 @@ const normTitle = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 // ---------- source fetchers (each returns [{title, isoDate, time, href, image?, objectFit?, partner}]) ----------
 
 async function fetchForum() {
-  const data = JSON.parse(await fetchText('https://www.austinforum.org/events?format=json'));
-  return (data.upcoming || []).map((it) => {
-    const start = centralParts(it.startDate);
-    const end = it.endDate ? centralParts(it.endDate) : null;
-    return {
+  // The Forum's site is no longer Squarespace, so there is no JSON feed. Every
+  // event lives at /events/<month>-<day>-<year>; read the slugs off the listing
+  // pages, then pull title/image/time from each upcoming event page.
+  const base = 'https://www.austinforum.org';
+  const listings = ['/events', '/events/format/presents', '/events/format/sessions', '/events/format/bookmarked'];
+  const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  const today = centralParts(Date.now()).iso;
+  const slugs = new Set();
+  for (const path of listings) {
+    const html = await fetchText(base + path);
+    for (const [, slug] of html.matchAll(/href="\/events\/([a-z]+-\d{1,2}-\d{4})"/g)) slugs.add(slug);
+  }
+  if (slugs.size === 0) throw new Error('no event links found on austinforum.org/events (site layout changed?)');
+
+  const events = [];
+  for (const slug of slugs) {
+    const [mon, day, year] = slug.split('-');
+    const mo = months.indexOf(mon) + 1;
+    if (mo === 0) continue;
+    const isoDate = `${year}-${String(mo).padStart(2, '0')}-${day.padStart(2, '0')}`;
+    if (isoDate <= today) continue;
+    const html = await fetchText(`${base}/events/${slug}`);
+    const title = decodeEntities((html.match(/<title>([^<]*)<\/title>/) || [])[1] || '').replace(/\s*\|\s*Austin Forum\s*$/, '');
+    if (!title) continue;
+    const image = (html.match(/property="og:image" content="([^"]+)"/) || html.match(/og:image" content="([^"]+)"/) || [])[1] || null;
+    // Times only appear in the agenda prose, e.g. "2:30 PM | Check-in ... 3:00 – 4:30 PM | Workshop".
+    // Start = first agenda line's time, end = last one's (only "<time> |" lines,
+    // so stray times like parking notes are ignored).
+    const text = decodeEntities(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
+    const agenda = (text.match(/Event Agenda(.*?)(When you arrive|Event details|$)/) || [])[1] || '';
+    const times = [...agenda.matchAll(/(\d{1,2}):(\d{2})\s*([AP])\.?M\s*\|/gi)].map(([, h, m, ap]) => {
+      const hh = (Number(h) % 12) + (ap.toUpperCase() === 'P' ? 12 : 0);
+      return fmtTime(hh, Number(m));
+    });
+    const startTime = times[0] || null;
+    const endTime = times.length > 1 ? times[times.length - 1] : null;
+    events.push({
       partner: 'forum',
-      title: `Austin Forum: ${decodeEntities(it.title)}`,
-      isoDate: start.iso,
-      time: end ? `${fmtTime(start.h, start.m)} - ${fmtTime(end.h, end.m)}` : fmtTime(start.h, start.m),
-      startTime: fmtTime(start.h, start.m),
-      href: `https://www.austinforum.org${it.fullUrl}`,
-      image: it.assetUrl || null,
-    };
-  });
+      title: `Austin Forum: ${title}`,
+      isoDate,
+      time: startTime ? (endTime ? `${startTime} - ${endTime}` : startTime) : null,
+      startTime,
+      href: `${base}/events/${slug}`,
+      image,
+    });
+  }
+  return events;
 }
 
 async function fetchAlliance() {
@@ -119,7 +152,7 @@ async function fetchAlliance() {
     const [eh, em] = endHm ? endHm.split(':').map(Number) : [null, null];
     return {
       partner: 'alliance',
-      title: decodeEntities(e.title),
+      title: `AAIA: ${decodeEntities(e.title).replace(/^Austin AI Alliance:?\s*/i, '')}`,
       isoDate: iso,
       time: eh !== null ? `${fmtTime(h, m)} - ${fmtTime(eh, em)}` : fmtTime(h, m),
       startTime: fmtTime(h, m),
@@ -254,7 +287,7 @@ async function main() {
           '  {',
           `    title: ${q(ev.title)},`,
           `    date: ${q(fmtDisplayDate(ev.isoDate))},`,
-          `    time: ${q(ev.time)},`,
+          ...(ev.time ? [`    time: ${q(ev.time)},`] : []),
           `    image: ${q(image)},`,
           ...(objectFit ? [`    objectFit: ${q(objectFit)},`] : []),
           `    href: ${q(ev.href)},`,

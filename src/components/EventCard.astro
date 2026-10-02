@@ -10,9 +10,10 @@ interface Props {
   objectFit?: 'cover' | 'contain';
   /** Which part of the image stays visible when cropped — defaults to 'center' */
   objectPosition?: 'top' | 'center' | 'bottom';
+  badge?: string;
 }
 
-const { title, date, time, image, href = '#', newTab = false, modalId, objectFit = 'cover', objectPosition = 'center' } = Astro.props;
+const { title, date, time, image, href = '#', newTab = false, modalId, objectFit = 'cover', objectPosition = 'center', badge } = Astro.props;
 const positionClass = { top: 'object-top', center: 'object-center', bottom: 'object-bottom' }[objectPosition];
 const imgClass = `w-full h-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} ${positionClass} group-hover:scale-105 transition-transform duration-300`;
 ---
@@ -20,7 +21,12 @@ const imgClass = `w-full h-full ${objectFit === 'contain' ? 'object-contain' : '
 {modalId ? (
   <button data-modal={modalId} class="group block h-full w-full text-left cursor-pointer">
     <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
-      <div class="aspect-video overflow-hidden">
+      <div class="aspect-video overflow-hidden relative">
+        {badge && (
+          <span class="absolute bottom-3 left-3 z-10 px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold shadow">
+            {badge}
+          </span>
+        )}
         <img
           src={image}
           alt={title}
@@ -45,7 +51,12 @@ const imgClass = `w-full h-full ${objectFit === 'contain' ? 'object-contain' : '
 ) : (
   <a href={href} target={newTab ? '_blank' : '_self'} rel={newTab ? 'noopener noreferrer' : undefined} class="group block h-full">
     <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
-      <div class="aspect-video overflow-hidden">
+      <div class="aspect-video overflow-hidden relative">
+        {badge && (
+          <span class="absolute bottom-3 left-3 z-10 px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold shadow">
+            {badge}
+          </span>
+        )}
         <img
           src={image}
           alt={title}

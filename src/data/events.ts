@@ -21,6 +21,8 @@ export interface EventItem {
   objectFit?: 'cover' | 'contain';
   /** Which part of the image stays visible when cropped — defaults to 'center' */
   objectPosition?: 'top' | 'center' | 'bottom';
+  /** Short tag shown on the card image, e.g. "ACC student waitlist open" */
+  badge?: string;
 }
 
 export const allEvents: EventItem[] = [
@@ -603,7 +605,8 @@ export const allEvents: EventItem[] = [
     time: '9:00 am start',
     image: '/images/riverhacks-nasa-space-apps-2026.jpg',
     objectPosition: 'top',
-    href: 'https://luma.com/n9rvutt0',
+    href: 'https://riverhacks-spaceapps.org/',
+    badge: 'ACC student waitlist open',
     newTab: true,
     isoDate: '2026-11-15',
     category: 'cgcs',

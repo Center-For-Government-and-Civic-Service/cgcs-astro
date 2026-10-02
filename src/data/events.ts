@@ -581,7 +581,7 @@ export const allEvents: EventItem[] = [
     title: 'Law Panel: AI, Ethics, and the Future of Legal Work',
     date: 'October 7, 2026',
     time: '2:30 pm - 4:00 pm',
-    image: '/images/logos/logo-color.png',
+    image: '/images/ai-and-the-law-panel.jpg',
     href: 'https://www.eventbrite.com/e/law-panel-tickets-1999711301333?aff=oddtdtcreator',
     newTab: true,
     isoDate: '2026-10-07',

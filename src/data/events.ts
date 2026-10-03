@@ -770,6 +770,16 @@ export const allEvents: EventItem[] = [
     isoDate: '2026-10-12',
     category: 'interest',
   },
+  {
+    title: 'AAIA: Austin AI Film Festival 2026',
+    date: 'October 16, 2026',
+    time: '8:00 am - 8:00 pm',
+    image: 'https://austin-ai.org/wp-content/uploads/2026/10/AustinAIFF.avif',
+    href: 'https://austin-ai.org/event/austin-ai-film-festival-2026/',
+    newTab: true,
+    isoDate: '2026-10-16',
+    category: 'interest',
+  },
 ];
 
 const now = new Date();

@@ -760,6 +760,16 @@ export const allEvents: EventItem[] = [
     isoDate: '2026-10-14',
     category: 'interest',
   },
+  {
+    title: 'Faculty & Student AI Townhall',
+    date: 'October 12, 2026',
+    time: '6:30 pm - 9:00 pm',
+    image: '/images/faculty-student-ai-townhall.jpg',
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSc3FPqZ8V8aHoCjNPXGXN-SF_L7wqMpkxVm94Mj2zW3zfRZpw/viewform?usp=header',
+    newTab: true,
+    isoDate: '2026-10-12',
+    category: 'interest',
+  },
 ];
 
 const now = new Date();

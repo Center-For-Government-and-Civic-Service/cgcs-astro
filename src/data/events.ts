@@ -780,6 +780,16 @@ export const allEvents: EventItem[] = [
     isoDate: '2026-10-16',
     category: 'interest',
   },
+  {
+    title: 'AIMUG Monthly Mixer & Showcase',
+    date: 'June 7, 2027',
+    time: '6:00 pm - 9:00 pm',
+    image: 'https://secure.meetupstatic.com/photos/event/6/5/5/highres_531601621.jpeg',
+    href: 'https://www.meetup.com/austin-langchain-ai-group/events/ffldbvykcjbkb/',
+    newTab: true,
+    isoDate: '2027-06-07',
+    category: 'interest',
+  },
 ];
 
 const now = new Date();

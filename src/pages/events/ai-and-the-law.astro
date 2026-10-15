@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// The recording lives in Google Drive (≈59 GB edited .mov), shared as
+// "anyone with the link can view". Drive transcodes it for streaming, so the
+// site embeds Drive's player instead of hosting the file.
+const DRIVE_FILE_ID = '13uxvttORP4WP-WpJeh0iX0nRWq6g3-o6';
+const embedUrl = `https://drive.google.com/file/d/${DRIVE_FILE_ID}/preview`;
+const driveUrl = `https://drive.google.com/file/d/${DRIVE_FILE_ID}/view`;
+
+const panelists = ['Daniela Peinado-Welsh', 'Colin McNamara', 'Joshua Weaver'];
+const moderator = 'Carey Cranor';
+---
+
+<BaseLayout
+  title="AI + The Law: Panel Recording"
+  description="Watch the full recording of AI + The Law, a CGCS panel on the intersection of artificial intelligence and the law."
+>
+  <section class="py-20 bg-gray-50 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/past-events" class="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+        <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        Past Events
+      </a>
+
+      <p class="text-primary font-semibold mt-8">October 7, 2026 · Panel recording</p>
+      <h1 class="section-heading mt-2 mb-4">AI + The Law</h1>
+      <p class="text-text-light text-lg max-w-3xl">
+        A panel on the intersection of artificial intelligence and the law.
+      </p>
+
+      <div class="mt-10 aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-xl">
+        <iframe
+          src={embedUrl}
+          title="AI + The Law panel recording"
+          class="h-full w-full"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="mt-3 text-sm text-text-light">
+        Video not loading?
+        <a href={driveUrl} target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline">
+          Watch it in Google Drive &rarr;
+        </a>
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <div class="rounded-2xl bg-white p-6 shadow-lg">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-text-light">Panelists</h2>
+          <ul class="mt-3 space-y-1 text-lg font-semibold text-text-dark">
+            {panelists.map((name) => <li>{name}</li>)}
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white p-6 shadow-lg">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-text-light">Moderator</h2>
+          <p class="mt-3 text-lg font-semibold text-text-dark">{moderator}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
